@@ -2,6 +2,8 @@
 
 **EasyRecruit** is a business process management system that automates recruitment and training workflows using advanced technologies. This project utilizes tools such as **Camunda**, **LangChain4j**, **Quarkus**, and the **Foreign Function and Memory API** to streamline decision-making, automate repetitive tasks, and improve the overall efficiency of human resource management.
 
+(overview diagram)[https://github.com/medazizmahfoudh/easy-recruit/blob/main/overview.png?raw=true]
+
 ## Features
 1. **Automated Application Evaluation**:
    - Utilizes LangChain4j to analyze and assess candidate applications.
