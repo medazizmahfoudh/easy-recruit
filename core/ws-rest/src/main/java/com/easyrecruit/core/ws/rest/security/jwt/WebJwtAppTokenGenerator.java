@@ -10,6 +10,7 @@ import net.thevpc.nuts.util.NLiteral;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +43,7 @@ public class WebJwtAppTokenGenerator implements AppTokenGenerator {
   
   private Key key() {
     String secret= NLiteral.of(confService.getConfValue("security.jwt","secret").orNull())
-            .asString().orElse("jwt-is-awesome#");
+            .asString().orElse("3e58950f9b875dddf66b25bd1b846e78c8c2bb923ee8cbd7f72695aefb626be3");
     return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
   }
 
