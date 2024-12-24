@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.easyrecruit</groupId>
-	<artifactId>easyrecruit-app-jar</artifactId>
+	<artifactId>easyrecruit-evaluation-ws-rest</artifactId>
 	<version>1.0.0</version>
 	<url/>
 	<licenses>
@@ -28,29 +28,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-evaluation-service-api</artifactId><version>1.0.0</version></dependency>
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-core-ws-rest</artifactId><version>1.0.0</version></dependency>
-		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-evaluation-ws-rest</artifactId><version>1.0.0</version></dependency>
-		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-evaluation-service-impl</artifactId><version>1.0.0</version></dependency>
-		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-evaluation-dal</artifactId><version>1.0.0</version></dependency>
-		<dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><scope>runtime</scope></dependency>
 		<dependency><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><optional>true</optional></dependency>
-
 	</dependencies>
 
-<!--	<build>-->
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--				<configuration>-->
-<!--					<excludes>-->
-<!--						<exclude>-->
-<!--							<groupId>org.projectlombok</groupId>-->
-<!--							<artifactId>lombok</artifactId>-->
-<!--						</exclude>-->
-<!--					</excludes>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
-<!--		</plugins>-->
-<!--	</build>-->
+
+
 </project>

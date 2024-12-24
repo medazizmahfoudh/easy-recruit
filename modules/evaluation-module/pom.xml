@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.easyrecruit</groupId>
-    <artifactId>easyrecruit-modules-builder</artifactId>
+    <artifactId>easyrecruit-evaluation-core-builder</artifactId>
     <version>1.0</version>
 
     <packaging>pom</packaging>
@@ -12,6 +12,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <modules>
-        <module>evaluation-module</module>
+        <module>infra</module>
+        <module>dal</module>
+        <module>service-api</module>
+        <module>service-impl</module>
+        <module>service-rest-cli</module>
+        <module>ws-rest</module>
     </modules>
 </project>

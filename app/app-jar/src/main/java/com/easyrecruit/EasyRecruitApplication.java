@@ -19,10 +19,22 @@ public class EasyRecruitApplication implements NApplication {
         SpringApplication.run(EasyRecruitApplication.class, args);
     }
 
-    @Override
     public void run() {
-        out.println("Hello ##Nuts## World!...");
-        out.println(NMsg.ofC("we are running Nuts %s %s %s %s %s %s",
+        String[] easyRecruit = {
+                " EEEEE   AAAAA  SSSSS  Y   Y       RRRRR   EEEEE  CCCCC  RRRRR   U   U  IIIII  TTTTT ",
+                " E       A   A  S       Y Y        R    R  E      C      R    R  U   U    I      T   ",
+                " E       A   A  S        Y         R    R  E      C      R    R  U   U    I      T   ",
+                " EEEE    AAAAA   SSSS     Y        RRRRR   EEEE   C      RRRRR   U   U    I      T   ",
+                " E       A   A      S     Y        R   R   E      C      R   R   U   U    I      T   ",
+                " E       A   A      S     Y        R    R  E      C      R    R  U   U    I      T   ",
+                " EEEEE   A   A  SSSSS     Y        R     R EEEEE  CCCCC  R     R  UUU    IIIII   T   "
+        };
+
+        for (String line : easyRecruit) {
+            out.println(line);
+        }
+        out.println("Easy Recruit Application");
+        out.println(NMsg.ofC("Running Nuts %s %s %s %s %s %s",
                 workspace.getRuntimeId().getVersion(),
                 workspace.getPlatform(),
                 workspace.getOs(),
