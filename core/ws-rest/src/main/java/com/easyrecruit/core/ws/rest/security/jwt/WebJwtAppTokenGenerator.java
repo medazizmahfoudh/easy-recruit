@@ -10,7 +10,6 @@ import net.thevpc.nuts.util.NLiteral;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -22,11 +21,6 @@ public class WebJwtAppTokenGenerator implements AppTokenGenerator {
   private static final Logger logger = LoggerFactory.getLogger(WebJwtAppTokenGenerator.class);
   @Autowired
   private ConfService confService;
-//  @Value("${app.jwt.secret}")
-//  private String jwtSecret;
-//
-//  @Value("${app.jwt.expiration-seconds}")
-//  private int jwtExpirationSeconds;
 
   public String createToken(Authentication authentication) {
 
