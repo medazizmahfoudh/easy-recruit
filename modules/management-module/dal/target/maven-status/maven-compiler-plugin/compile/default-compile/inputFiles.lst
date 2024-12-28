@@ -1,0 +1,12 @@
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/document/CvDocument.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/entity/ApplicationEntity.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/RecruiterRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/ApplicationRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/document/PositionDocument.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/InterviewRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/CvRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/entity/InterviewEntity.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/PositionRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/entity/RecruiterEntity.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/entity/CandidateEntity.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/CandidateRepository.java

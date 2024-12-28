@@ -13,5 +13,6 @@
     </properties>
     <modules>
         <module>evaluation-module</module>
+        <module>management-module</module>
     </modules>
 </project>

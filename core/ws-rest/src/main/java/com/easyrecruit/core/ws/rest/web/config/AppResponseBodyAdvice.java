@@ -9,7 +9,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-@RestControllerAdvice(basePackages = {"com.avidea.insurance.webapi.web.ws"})
+@RestControllerAdvice(basePackages = {"com.easyrecruit.management.ws.rest"})
 public class AppResponseBodyAdvice implements ResponseBodyAdvice {
     private static final Logger LOG = LoggerFactory.getLogger(AppResponseBodyAdvice.class);
 

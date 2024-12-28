@@ -1,0 +1,5 @@
+com/easyrecruit/management/ws/rest/ApplicationWS.class
+com/easyrecruit/management/ws/rest/RecruiterWS.class
+com/easyrecruit/management/ws/rest/CandidateWS.class
+com/easyrecruit/management/ws/rest/PositionWS.class
+com/easyrecruit/management/ws/rest/InterviewWS.class

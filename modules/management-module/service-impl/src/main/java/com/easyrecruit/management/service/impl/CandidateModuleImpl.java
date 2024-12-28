@@ -1,0 +1,137 @@
+package com.easyrecruit.management.service.impl;
+
+import com.easyrecruit.management.dal.entity.CandidateEntity;
+import com.easyrecruit.management.dal.repository.CandidateRepository;
+import com.easyrecruit.management.infra.model.entity.Candidate;
+import com.easyrecruit.management.infra.model.payload.request.CandidateCreateOrUpdateRequest;
+import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
+import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
+import com.easyrecruit.management.service.api.CandidateModule;
+import com.easyrecruit.management.service.api.exception.CRUDOperation;
+import com.easyrecruit.management.service.api.exception.CRUDOperationException;
+import com.easyrecruit.management.service.impl.converter.CandidateConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class CandidateModuleImpl implements CandidateModule {
+
+    @Autowired
+    private CandidateRepository repository;
+
+    @Override
+    public Candidate createCandidate(CandidateCreateOrUpdateRequest request) throws CRUDOperationException {
+
+        if (repository.existsByEmail(request.email())) {
+            throw new CRUDOperationException(CRUDOperation.CREATE, "Candidate with the given name already exists");
+        }
+
+        Candidate candidate = new Candidate()
+                .setFirstname(request.firstname())
+                .setLastname(request.lastname())
+                .setEmail(request.email());
+
+        CandidateEntity candidateEntity = CandidateConverter.INSTANCE.toEntity(candidate);
+        repository.save(candidateEntity);
+
+        return candidate;
+    }
+
+    @Override
+    public Candidate updateCandidate(CandidateCreateOrUpdateRequest request, String candidateUuid) throws CRUDOperationException {
+        Optional<CandidateEntity> oldCandidateEntity = repository.getCandidateEntityByUuid(candidateUuid);
+        if (oldCandidateEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.UPDATE, "Candidate not found.");
+        }
+
+        Candidate candidate = CandidateConverter.INSTANCE.fromEntity(oldCandidateEntity.get());
+        candidate
+                .setEmail(request.email())
+                        .setFirstname(request.firstname())
+                                .setLastname(request.lastname());
+        repository.save(CandidateConverter.INSTANCE.toEntity(candidate));
+
+        return candidate;
+    }
+
+    @Override
+    public DeleteResponse deleteCandidate(Candidate candidate) throws CRUDOperationException {
+        repository.delete(CandidateConverter.INSTANCE.toEntity(candidate));
+        return new DeleteResponse(OperationStatus.SUCCESS, "Resource has been deleted.");
+    }
+
+    @Override
+    public DeleteResponse deleteCandidate(String candidateUuid) throws CRUDOperationException {
+        Optional<CandidateEntity> candidateEntity = repository.getCandidateEntityByUuid(candidateUuid);
+        if (candidateEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Candidate for the given uuid doesn't exist");
+        }
+        repository.delete(candidateEntity.get());
+        return new DeleteResponse(OperationStatus.SUCCESS, "Resource has been deleted.");
+    }
+
+    @Override
+    public Candidate getCandidateByUuid(String uuid) throws CRUDOperationException {
+        Optional<CandidateEntity> candidateEntity = repository.getCandidateEntityByUuid(uuid);
+        if (candidateEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Candidate for the given uuid doesn't exist");
+        }
+        return CandidateConverter.INSTANCE.fromEntity(candidateEntity.get());
+    }
+
+    @Override
+    public Candidate getCandidateByEmail(String email) throws CRUDOperationException {
+        Optional<CandidateEntity> candidateEntity = repository.getCandidateEntityByEmail(email);
+        if (candidateEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Candidate for the given fullname doesn't exist");
+        }
+        return CandidateConverter.INSTANCE.fromEntity(candidateEntity.get());
+    }
+
+    @Override
+    public List<Candidate> getCandidateByFullname(String fullname) throws CRUDOperationException {
+        return List.of();
+    }
+
+    @Override
+    public List<Candidate> getCandidateByFirstname(String firstname) throws CRUDOperationException {
+        List<CandidateEntity> candidateEntities = repository.getCandidateEntityByFirstname(firstname);
+        if (candidateEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Candidates for the given firstname doesn't exist");
+        }
+        return candidateEntities
+                .stream()
+                .map(CandidateConverter.INSTANCE::fromEntity)
+                .toList();
+    }
+
+    @Override
+    public List<Candidate> getCandidateByLastname(String lastname) throws CRUDOperationException {
+        List<CandidateEntity> candidateEntities = repository.getCandidateEntityByLastname(lastname);
+        if (candidateEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Candidates for the given lastname doesn't exist");
+
+        }
+        return candidateEntities
+                .stream()
+                .map(CandidateConverter.INSTANCE::fromEntity)
+                .toList();
+    }
+
+    @Override
+    public List<Candidate> getAllCandidates() throws CRUDOperationException {
+        return repository.findAll()
+                .stream()
+                .map(CandidateConverter.INSTANCE::fromEntity)
+                .toList();
+    }
+
+    @Override
+    public DeleteResponse deleteAllCandidates() throws CRUDOperationException {
+        repository.deleteAll();
+        return new DeleteResponse(OperationStatus.SUCCESS, "Resource has been deleted.");
+    }
+}

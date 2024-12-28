@@ -1,0 +1,12 @@
+com/easyrecruit/management/dal/entity/RecruiterEntity.class
+com/easyrecruit/management/dal/entity/ApplicationEntity.class
+com/easyrecruit/management/dal/entity/InterviewEntity.class
+com/easyrecruit/management/dal/document/CvDocument.class
+com/easyrecruit/management/dal/repository/CvRepository.class
+com/easyrecruit/management/dal/document/PositionDocument.class
+com/easyrecruit/management/dal/repository/InterviewRepository.class
+com/easyrecruit/management/dal/repository/ApplicationRepository.class
+com/easyrecruit/management/dal/repository/PositionRepository.class
+com/easyrecruit/management/dal/repository/CandidateRepository.class
+com/easyrecruit/management/dal/entity/CandidateEntity.class
+com/easyrecruit/management/dal/repository/RecruiterRepository.class
