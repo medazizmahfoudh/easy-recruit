@@ -29,6 +29,10 @@ public class RecruiterWS {
     public ResponseEntity<Recruiter> getRecruiter(@PathVariable("recruiterUuid") String recruiterUuid){
         return ResponseEntity.ok(recruiterModule.getRecruiterByUuid(recruiterUuid));
     }
+    @GetMapping("/get")
+    public ResponseEntity<List<Recruiter>> getRecruiterByFullname(@RequestParam("fullname") String fullname){
+        return ResponseEntity.ok(recruiterModule.getRecruiterByFullname(fullname));
+    }
     @GetMapping("/all")
     public ResponseEntity<List<Recruiter>> getAllRecruiters(){
         return ResponseEntity.ok(recruiterModule.getAllRecruiters());

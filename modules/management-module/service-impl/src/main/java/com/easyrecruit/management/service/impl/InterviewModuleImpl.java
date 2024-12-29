@@ -10,6 +10,7 @@ import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.service.api.CandidateModule;
 import com.easyrecruit.management.service.api.InterviewModule;
 import com.easyrecruit.management.service.api.RecruiterModule;
+import com.easyrecruit.management.service.api.exception.CRUDOperation;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;
 import com.easyrecruit.management.service.impl.converter.InterviewConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InterviewModuleImpl implements InterviewModule {
@@ -30,6 +32,8 @@ public class InterviewModuleImpl implements InterviewModule {
 
     @Override
     public Interview createInterview(InterviewCreateOrUpdateRequest request) throws CRUDOperationException {
+
+
 
         Recruiter recruiter = recruiterModule.getRecruiterByUuid(request.recruiterUuid());
         Candidate candidate = candidateModule.getCandidateByUuid(request.candidateUuid());
@@ -48,47 +52,109 @@ public class InterviewModuleImpl implements InterviewModule {
 
     @Override
     public Interview updateInterview(InterviewCreateOrUpdateRequest request, String uuid) throws CRUDOperationException {
-        return null;
+        Optional<InterviewEntity> interviewEntity = repository.getInterviewEntityByUuid(uuid);
+        if (interviewEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Interview for the given uuid not found.");
+        }
+        Interview interview = InterviewConverter.INSTANCE.fromEntity(interviewEntity.get());
+        interview.
+                setDate(Date.valueOf(request.date()))
+                .setLocation(request.location())
+                .setCandidate(candidateModule.getCandidateByUuid(request.candidateUuid()))
+                .setRecruiter(recruiterModule.getRecruiterByUuid(uuid))
+                .setPositionUuid(request.positionUuid());
+
+        repository.save(InterviewConverter.INSTANCE.toEntity(interview));
+        return interview;
     }
 
     @Override
     public Interview getInterviewByUuid(String uuid) {
-        return null;
+        Optional<InterviewEntity> interviewEntity = repository.getInterviewEntityByUuid(uuid);
+        if (interviewEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Interview for the given uuid not found.");
+        }
+        return InterviewConverter.INSTANCE.fromEntity(interviewEntity.get());
     }
 
     @Override
     public List<Interview> getAllInterviews() {
-        return List.of();
+        List<InterviewEntity> interviewEntities = repository.findAll();
+        if (interviewEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found.");
+        }
+        return interviewEntities
+                .stream()
+                .map(InterviewConverter.INSTANCE::fromEntity)
+                .toList();
     }
 
     @Override
     public List<Interview> getInterviewsByCandidateUuid(String candidateUuid) {
-        return List.of();
+        List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByCandidate_Uuid(candidateUuid);
+        if (interviewEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found for the given candidate.");
+        }
+        return interviewEntities
+                .stream()
+                .map(InterviewConverter.INSTANCE::fromEntity)
+                .toList();
     }
-
     @Override
     public List<Interview> getInterviewsByRecruiterUuid(String recruiterUuid) {
-        return List.of();
+        List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByRecruiterUuid(recruiterUuid);
+        if (interviewEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ,"No interviews found for the given recruiter.");
+        }
+        return interviewEntities
+                .stream()
+                .map(InterviewConverter.INSTANCE::fromEntity)
+                .toList();
     }
 
     @Override
     public List<Interview> getInterviewsByPositionUuid(String positionUuid) {
-        return List.of();
+        List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByPositionUuid(positionUuid);
+        if (interviewEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ,"No interviews found for the given position.");
+        }
+        return interviewEntities
+                .stream()
+                .map(InterviewConverter.INSTANCE::fromEntity)
+                .toList();
     }
 
     @Override
     public Interview getInterviewByPositionUuidAndCandidateUuid(String positionUuid, String candidateUuid) {
-        return null;
+        Optional<InterviewEntity> interviewEntity = repository.getInterviewEntityByPositionUuidAndCandidate_Uuid(positionUuid, candidateUuid);
+        if (interviewEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found for the given position and candidate.");
+        }
+        return InterviewConverter.INSTANCE.fromEntity(interviewEntity.get());
     }
 
     @Override
     public List<Interview> getInterviewsByPositionUuidAndRecruiterUuid(String positionUuid, String recruiterUuid) {
-        return List.of();
+        List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByPositionUuidAndRecruiterUuid(positionUuid, recruiterUuid);
+        if (interviewEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found for the given position and recruiter.");
+        }
+        return interviewEntities
+                .stream()
+                .map(InterviewConverter.INSTANCE::fromEntity)
+                .toList();
     }
 
     @Override
     public List<Interview> getInterviewsByCandidateUuidAndRecruiterUuid(String candidateUuid, String recruiterUuid) {
-        return List.of();
+        List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByCandidate_UuidAndRecruiterUuid(candidateUuid, recruiterUuid);
+        if (interviewEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found for the given candidate and recruiter.");
+        }
+        return interviewEntities
+                .stream()
+                .map(InterviewConverter.INSTANCE::fromEntity)
+                .toList();
     }
 
     @Override

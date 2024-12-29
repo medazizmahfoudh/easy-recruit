@@ -14,7 +14,6 @@ public interface RecruiterModule {
     DeleteResponse deleteRecruiter(Recruiter Recruiter) throws CRUDOperationException;
     DeleteResponse deleteRecruiter(String RecruiterUuid) throws CRUDOperationException;
     Recruiter getRecruiterByUuid(String uuid) throws CRUDOperationException;
-    Recruiter getRecruiterByEmail(String email) throws CRUDOperationException;
     List<Recruiter> getRecruiterByFullname(String fullname) throws CRUDOperationException;
     List<Recruiter> getRecruiterByFirstname(String firstname) throws CRUDOperationException;
     List<Recruiter> getRecruiterByLastname(String lastname) throws CRUDOperationException;

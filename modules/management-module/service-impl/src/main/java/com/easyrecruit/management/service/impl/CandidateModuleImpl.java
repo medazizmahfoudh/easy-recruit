@@ -6,7 +6,9 @@ import com.easyrecruit.management.infra.model.entity.Candidate;
 import com.easyrecruit.management.infra.model.payload.request.CandidateCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
+import com.easyrecruit.management.service.api.ApplicationModule;
 import com.easyrecruit.management.service.api.CandidateModule;
+import com.easyrecruit.management.service.api.CvModule;
 import com.easyrecruit.management.service.api.exception.CRUDOperation;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;
 import com.easyrecruit.management.service.impl.converter.CandidateConverter;
@@ -21,6 +23,9 @@ public class CandidateModuleImpl implements CandidateModule {
 
     @Autowired
     private CandidateRepository repository;
+    @Autowired
+    private CvModule cvModule;
+
 
     @Override
     public Candidate createCandidate(CandidateCreateOrUpdateRequest request) throws CRUDOperationException {
@@ -30,8 +35,8 @@ public class CandidateModuleImpl implements CandidateModule {
         }
 
         Candidate candidate = new Candidate()
-                .setFirstname(request.firstname())
-                .setLastname(request.lastname())
+                .setFirstname(request.firstname().toLowerCase())
+                .setLastname(request.lastname().toLowerCase())
                 .setEmail(request.email());
 
         CandidateEntity candidateEntity = CandidateConverter.INSTANCE.toEntity(candidate);
@@ -93,12 +98,48 @@ public class CandidateModuleImpl implements CandidateModule {
 
     @Override
     public List<Candidate> getCandidateByFullname(String fullname) throws CRUDOperationException {
-        return List.of();
+        String[] nameParts = getStrings(fullname);
+
+
+
+        String firstname = nameParts[0].toLowerCase();
+        String lastname = nameParts[1].toLowerCase();
+
+        List<CandidateEntity> candidateEntities = repository.getCandidateEntityByFirstnameAndLastname(firstname, lastname);
+
+        if (candidateEntities.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Candidates with the given fullname don't exist.");
+        }
+
+        return candidateEntities.stream()
+                .map(CandidateConverter.INSTANCE::fromEntity)
+                .toList();
     }
+
+    private String[] getStrings(String fullname) {
+        if (fullname == null || fullname.trim().isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Fullname cannot be empty.");
+        }
+
+        String sanitizedFullname = fullname.replaceAll("[^a-zA-Z ]", "");
+
+        if (!sanitizedFullname.equals(fullname)) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Invalid character(s) found in fullname. Only alphabetic characters and spaces are allowed.");
+        }
+
+        String[] nameParts = sanitizedFullname.trim().split(" ");
+
+        if (nameParts.length != 2) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Invalid fullname format. Please provide both first and last names.");
+        }
+
+        return nameParts;
+    }
+
 
     @Override
     public List<Candidate> getCandidateByFirstname(String firstname) throws CRUDOperationException {
-        List<CandidateEntity> candidateEntities = repository.getCandidateEntityByFirstname(firstname);
+        List<CandidateEntity> candidateEntities = repository.getCandidateEntityByFirstname(firstname.toLowerCase());
         if (candidateEntities.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Candidates for the given firstname doesn't exist");
         }
@@ -110,7 +151,7 @@ public class CandidateModuleImpl implements CandidateModule {
 
     @Override
     public List<Candidate> getCandidateByLastname(String lastname) throws CRUDOperationException {
-        List<CandidateEntity> candidateEntities = repository.getCandidateEntityByLastname(lastname);
+        List<CandidateEntity> candidateEntities = repository.getCandidateEntityByLastname(lastname.toLowerCase());
         if (candidateEntities.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Candidates for the given lastname doesn't exist");
 
@@ -132,6 +173,7 @@ public class CandidateModuleImpl implements CandidateModule {
     @Override
     public DeleteResponse deleteAllCandidates() throws CRUDOperationException {
         repository.deleteAll();
+        cvModule.deleteAll();
         return new DeleteResponse(OperationStatus.SUCCESS, "Resource has been deleted.");
     }
 }
