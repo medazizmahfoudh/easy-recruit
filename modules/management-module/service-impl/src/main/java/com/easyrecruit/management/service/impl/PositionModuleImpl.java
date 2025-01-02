@@ -2,7 +2,7 @@ package com.easyrecruit.management.service.impl;
 
 import com.easyrecruit.management.dal.document.PositionDocument;
 import com.easyrecruit.management.dal.repository.PositionRepository;
-import com.easyrecruit.management.infra.model.entity.Position;
+import com.easyrecruit.management.infra.model.document.Position;
 import com.easyrecruit.management.infra.model.payload.request.PositionCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.service.api.PositionModule;
@@ -62,7 +62,11 @@ public class PositionModuleImpl implements PositionModule {
 
     @Override
     public List<Position> getAllPositions() {
-        return List.of();
+        List<PositionDocument> positionDocuments = repository.findAll();
+        return positionDocuments
+                .stream()
+                .map(PositionConverter.INSTANCE::fromEntity)
+                .toList();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.easyrecruit.management.service.api;
 
-import com.easyrecruit.management.infra.model.Cv;
+import com.easyrecruit.management.infra.model.document.Cv;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import org.springframework.web.multipart.MultipartFile;
 

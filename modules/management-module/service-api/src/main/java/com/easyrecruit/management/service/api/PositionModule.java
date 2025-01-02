@@ -1,6 +1,6 @@
 package com.easyrecruit.management.service.api;
 
-import com.easyrecruit.management.infra.model.entity.Position;
+import com.easyrecruit.management.infra.model.document.Position;
 import com.easyrecruit.management.infra.model.payload.request.PositionCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;

@@ -1,0 +1,38 @@
+[
+  {
+    "route": "",
+    "flowLayout": false,
+    "params": {},
+    "title": "Index"
+  },
+  {
+    "route": "auth",
+    "params": {},
+    "children": [
+      {
+        "route": "login",
+        "flowLayout": false,
+        "params": {},
+        "title": "Login"
+      },
+      {
+        "route": "signup",
+        "flowLayout": false,
+        "params": {},
+        "title": "Sign Up"
+      }
+    ]
+  },
+  {
+    "route": "dashboard",
+    "params": {},
+    "children": [
+      {
+        "route": "main",
+        "flowLayout": false,
+        "params": {},
+        "title": "Main"
+      }
+    ]
+  }
+]

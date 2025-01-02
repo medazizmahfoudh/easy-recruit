@@ -1,6 +1,7 @@
 package com.easyrecruit.management.infra.model.entity;
 
-import com.easyrecruit.management.infra.model.Cv;
+import com.easyrecruit.management.infra.model.document.Cv;
+import com.easyrecruit.management.infra.model.document.Position;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

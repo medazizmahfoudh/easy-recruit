@@ -2,7 +2,6 @@ package com.easyrecruit.management.dal.entity;
 
 import com.easyrecruit.management.infra.model.entity.ApplicationStatus;
 import com.easyrecruit.management.infra.model.entity.Candidate;
-import com.easyrecruit.management.infra.model.entity.Position;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

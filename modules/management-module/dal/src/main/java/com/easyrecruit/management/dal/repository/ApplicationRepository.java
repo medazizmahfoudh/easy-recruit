@@ -1,17 +1,16 @@
 package com.easyrecruit.management.dal.repository;
 
 import com.easyrecruit.management.dal.entity.ApplicationEntity;
-import com.easyrecruit.management.infra.model.entity.Application;
 import com.easyrecruit.management.infra.model.entity.Candidate;
-import com.easyrecruit.management.infra.model.entity.Position;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ApplicationRepository extends JpaRepository<ApplicationEntity, Long> {
+public interface ApplicationRepository extends JpaRepository<ApplicationEntity, Long>, JpaSpecificationExecutor<ApplicationEntity> {
 
     Optional<ApplicationEntity> getApplicationEntityByUuid(String uuid);
     Optional<ApplicationEntity> getApplicationEntityByCandidate_UuidAndPositionUuid(String candidateUuid, String positionUuid);

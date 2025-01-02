@@ -1,8 +1,6 @@
 package com.easyrecruit.management.ws.rest;
 
-import com.easyrecruit.management.infra.model.entity.Application;
-import com.easyrecruit.management.infra.model.entity.Position;
-import com.easyrecruit.management.infra.model.payload.request.ApplicationSubmitOrUpdateRequest;
+import com.easyrecruit.management.infra.model.document.Position;
 import com.easyrecruit.management.infra.model.payload.request.PositionCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.service.api.PositionModule;

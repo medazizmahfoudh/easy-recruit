@@ -34,25 +34,13 @@
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-management-service-impl</artifactId><version>1.0.0</version></dependency>
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-dmn-service-api</artifactId><version>1.0.0</version></dependency>
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-dmn-service-impl</artifactId><version>1.0.0</version></dependency>
+		<dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-data-jpa</artifactId></dependency>
 		<dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><scope>runtime</scope></dependency>
 		<dependency><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><optional>true</optional></dependency>
-
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-spring-boot-starter</artifactId>
+			<version>24.5.5</version>
+		</dependency>
 	</dependencies>
-
-<!--	<build>-->
-<!--		<plugins>-->
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--				<configuration>-->
-<!--					<excludes>-->
-<!--						<exclude>-->
-<!--							<groupId>org.projectlombok</groupId>-->
-<!--							<artifactId>lombok</artifactId>-->
-<!--						</exclude>-->
-<!--					</excludes>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
-<!--		</plugins>-->
-<!--	</build>-->
 </project>

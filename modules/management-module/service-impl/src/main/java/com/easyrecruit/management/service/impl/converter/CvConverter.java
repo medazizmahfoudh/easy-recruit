@@ -1,7 +1,7 @@
 package com.easyrecruit.management.service.impl.converter;
 
 import com.easyrecruit.management.dal.document.CvDocument;
-import com.easyrecruit.management.infra.model.Cv;
+import com.easyrecruit.management.infra.model.document.Cv;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

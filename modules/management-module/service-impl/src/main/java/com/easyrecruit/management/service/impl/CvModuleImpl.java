@@ -2,7 +2,7 @@ package com.easyrecruit.management.service.impl;
 
 import com.easyrecruit.management.dal.document.CvDocument;
 import com.easyrecruit.management.dal.repository.CvRepository;
-import com.easyrecruit.management.infra.model.Cv;
+import com.easyrecruit.management.infra.model.document.Cv;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
 import com.easyrecruit.management.service.api.CvModule;

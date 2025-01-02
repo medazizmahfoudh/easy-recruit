@@ -1,6 +1,6 @@
 package com.easyrecruit.management.ws.rest;
 
-import com.easyrecruit.management.infra.model.Cv;
+import com.easyrecruit.management.infra.model.document.Cv;
 import com.easyrecruit.management.service.api.CvModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
