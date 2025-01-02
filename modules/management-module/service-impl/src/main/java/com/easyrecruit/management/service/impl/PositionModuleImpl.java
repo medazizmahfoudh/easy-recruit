@@ -62,7 +62,11 @@ public class PositionModuleImpl implements PositionModule {
 
     @Override
     public List<Position> getAllPositions() {
-        return List.of();
+        List<PositionDocument> positionDocuments = repository.findAll();
+        return positionDocuments
+                .stream()
+                .map(PositionConverter.INSTANCE::fromEntity)
+                .toList();
     }
 
     @Override

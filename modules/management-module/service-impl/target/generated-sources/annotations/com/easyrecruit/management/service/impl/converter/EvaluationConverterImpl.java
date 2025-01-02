@@ -6,7 +6,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-02T01:02:07+0100",
+    date = "2025-01-02T22:49:36+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class EvaluationConverterImpl implements EvaluationConverter {
