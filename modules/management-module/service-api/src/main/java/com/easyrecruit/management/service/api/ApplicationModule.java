@@ -12,6 +12,7 @@ public interface ApplicationModule {
 
     Application createApplication(ApplicationSubmitOrUpdateRequest request) throws CRUDOperationException;
     Application getApplicationByUuid(String uuid) throws CRUDOperationException;
+    Application updateApplicationStatus(String applicationUuid, Integer applicationStatus) throws CRUDOperationException;
     Application getApplicationByCandidateUuidAndPositionUuid(String candidateUuid, String positionUuid) throws CRUDOperationException;
     List<Application> getApplicationsByCandidateFirstname(String firstname) throws CRUDOperationException;
     List<Application> getApplicationsByCandidateLastname(String lastname) throws CRUDOperationException;

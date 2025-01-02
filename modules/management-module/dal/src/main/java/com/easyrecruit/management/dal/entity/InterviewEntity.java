@@ -1,7 +1,7 @@
 package com.easyrecruit.management.dal.entity;
 
 import com.easyrecruit.management.infra.model.entity.Candidate;
-import com.easyrecruit.management.infra.model.entity.Position;
+import com.easyrecruit.management.infra.model.entity.Evaluation;
 import com.easyrecruit.management.infra.model.entity.Recruiter;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -49,5 +49,7 @@ public class InterviewEntity {
             @AttributeOverride(name = "cv", column = @Column(name = "candidate_cv")),
     })
     private Candidate candidate;
+
+
 
 }

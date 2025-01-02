@@ -90,10 +90,6 @@ public class RecruiterModuleImpl implements RecruiterModule {
 
         List<RecruiterEntity> recruiterEntities = repository.getRecruiterEntityByFirstnameAndLastname(firstname, lastname);
 
-        if (recruiterEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Recruiters with the given fullname don't exist.");
-        }
-
         return recruiterEntities.stream()
                 .map(RecruiterConverter.INSTANCE::fromEntity)
                 .toList();
@@ -122,27 +118,18 @@ public class RecruiterModuleImpl implements RecruiterModule {
     @Override
     public List<Recruiter> getRecruiterByFirstname(String firstname) throws CRUDOperationException {
         List<RecruiterEntity> recruiterEntities = repository.getRecruiterEntityByFirstname(firstname.toLowerCase());
-        if (recruiterEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Recruiters with the given firstname don't exist");
-        }
         return recruiterEntities.stream().map(RecruiterConverter.INSTANCE::fromEntity).toList();
     }
 
     @Override
     public List<Recruiter> getRecruiterByLastname(String lastname) throws CRUDOperationException {
         List<RecruiterEntity> recruiterEntities = repository.getRecruiterEntityByLastname(lastname.toLowerCase());
-        if (recruiterEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Recruiters with the given lastname don't exist");
-        }
         return recruiterEntities.stream().map(RecruiterConverter.INSTANCE::fromEntity).toList();
     }
 
     @Override
     public List<Recruiter> getAllRecruiters() throws CRUDOperationException {
         List<RecruiterEntity> recruiterEntities = repository.findAll();
-        if (recruiterEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "No recruiters found.");
-        }
         return recruiterEntities.stream().map(RecruiterConverter.INSTANCE::fromEntity).toList();
     }
 

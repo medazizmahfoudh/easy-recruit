@@ -21,7 +21,11 @@ public class Interview {
     private Date date;
     private String location;
     private String positionUuid;
+    private Evaluation evaluation;
     private Recruiter recruiter;
     private Candidate candidate;
+    private InterviewStatus status;
+    private String comment;
+
 
 }

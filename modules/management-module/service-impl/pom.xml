@@ -31,6 +31,12 @@
     <dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-management-service-api</artifactId><version>1.0.0</version></dependency>
     <dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-management-dal</artifactId><version>1.0.0</version><scope>compile</scope></dependency>
     <dependency><groupId>org.mapstruct</groupId><artifactId>mapstruct</artifactId><version>${org.mapstruct.version}</version></dependency>
+      <dependency>
+          <groupId>com.easyrecruit</groupId>
+          <artifactId>easyrecruit-dmn-infra</artifactId>
+          <version>1.0.0</version>
+          <scope>compile</scope>
+      </dependency>
   </dependencies>
 
   <build>

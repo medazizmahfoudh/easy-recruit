@@ -80,9 +80,6 @@ public class InterviewModuleImpl implements InterviewModule {
     @Override
     public List<Interview> getAllInterviews() {
         List<InterviewEntity> interviewEntities = repository.findAll();
-        if (interviewEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found.");
-        }
         return interviewEntities
                 .stream()
                 .map(InterviewConverter.INSTANCE::fromEntity)
@@ -92,9 +89,6 @@ public class InterviewModuleImpl implements InterviewModule {
     @Override
     public List<Interview> getInterviewsByCandidateUuid(String candidateUuid) {
         List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByCandidate_Uuid(candidateUuid);
-        if (interviewEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found for the given candidate.");
-        }
         return interviewEntities
                 .stream()
                 .map(InterviewConverter.INSTANCE::fromEntity)
@@ -103,9 +97,6 @@ public class InterviewModuleImpl implements InterviewModule {
     @Override
     public List<Interview> getInterviewsByRecruiterUuid(String recruiterUuid) {
         List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByRecruiterUuid(recruiterUuid);
-        if (interviewEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ,"No interviews found for the given recruiter.");
-        }
         return interviewEntities
                 .stream()
                 .map(InterviewConverter.INSTANCE::fromEntity)
@@ -115,9 +106,6 @@ public class InterviewModuleImpl implements InterviewModule {
     @Override
     public List<Interview> getInterviewsByPositionUuid(String positionUuid) {
         List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByPositionUuid(positionUuid);
-        if (interviewEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ,"No interviews found for the given position.");
-        }
         return interviewEntities
                 .stream()
                 .map(InterviewConverter.INSTANCE::fromEntity)
@@ -136,9 +124,6 @@ public class InterviewModuleImpl implements InterviewModule {
     @Override
     public List<Interview> getInterviewsByPositionUuidAndRecruiterUuid(String positionUuid, String recruiterUuid) {
         List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByPositionUuidAndRecruiterUuid(positionUuid, recruiterUuid);
-        if (interviewEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found for the given position and recruiter.");
-        }
         return interviewEntities
                 .stream()
                 .map(InterviewConverter.INSTANCE::fromEntity)
@@ -148,9 +133,6 @@ public class InterviewModuleImpl implements InterviewModule {
     @Override
     public List<Interview> getInterviewsByCandidateUuidAndRecruiterUuid(String candidateUuid, String recruiterUuid) {
         List<InterviewEntity> interviewEntities = repository.getInterviewEntitiesByCandidate_UuidAndRecruiterUuid(candidateUuid, recruiterUuid);
-        if (interviewEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "No interviews found for the given candidate and recruiter.");
-        }
         return interviewEntities
                 .stream()
                 .map(InterviewConverter.INSTANCE::fromEntity)

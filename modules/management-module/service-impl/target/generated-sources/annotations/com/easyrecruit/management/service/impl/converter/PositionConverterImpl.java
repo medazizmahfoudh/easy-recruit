@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-28T17:27:44+0100",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
+    date = "2025-01-02T01:02:07+0100",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class PositionConverterImpl implements PositionConverter {
 

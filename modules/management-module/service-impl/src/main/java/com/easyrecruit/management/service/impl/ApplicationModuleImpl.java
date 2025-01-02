@@ -3,9 +3,7 @@ package com.easyrecruit.management.service.impl;
 import com.easyrecruit.management.dal.entity.ApplicationEntity;
 import com.easyrecruit.management.dal.repository.ApplicationRepository;
 import com.easyrecruit.management.infra.model.Cv;
-import com.easyrecruit.management.infra.model.entity.Application;
-import com.easyrecruit.management.infra.model.entity.Candidate;
-import com.easyrecruit.management.infra.model.entity.Position;
+import com.easyrecruit.management.infra.model.entity.*;
 import com.easyrecruit.management.infra.model.payload.request.ApplicationSubmitOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
@@ -31,6 +29,8 @@ public class ApplicationModuleImpl implements ApplicationModule{
     private CandidateModule candidateModule;
     @Autowired
     private CvModule cvModule;
+    @Autowired
+    private EvaluationModule evaluationModule;
 
 
     @Override
@@ -51,9 +51,12 @@ public class ApplicationModuleImpl implements ApplicationModule{
         cv.setApplicationUuid(application.getUuid());
         application.setCv(cv);
 
-        ApplicationEntity applicationEntity = ApplicationConverter.INSTANCE.toEntity(application);
-        repository.save(applicationEntity);
+        repository.save(ApplicationConverter.INSTANCE.toEntity(application));
         cvModule.saveCv(cv);
+
+        Evaluation evaluation = new Evaluation().setApplicationUuid(application.getUuid());
+        evaluationModule.createEvaluation(evaluation);
+
         return application;
     }
 
@@ -66,6 +69,31 @@ public class ApplicationModuleImpl implements ApplicationModule{
         Application application = ApplicationConverter.INSTANCE.fromEntity(applicationEntity.get());
         Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
         application.setCv(cv);
+        return application;
+    }
+
+    @Override
+    public Application updateApplicationStatus(String applicationUuid, Integer applicationStatus) throws CRUDOperationException {
+        Optional<ApplicationEntity> applicationEntity = repository.getApplicationEntityByUuid(applicationUuid);
+        if (applicationEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Application not found for the given uuid.");
+        }
+        Application application = ApplicationConverter.INSTANCE.fromEntity(applicationEntity.get());
+
+        switch (applicationStatus) {
+            case -1 : application.setStatus(ApplicationStatus.REJECTED);
+            case 0 : application.setStatus(ApplicationStatus.NEW);
+            case 1 : application.setStatus(ApplicationStatus.ACCEPTED);
+            case 9 : application.setStatus(ApplicationStatus.PRELIMINARY_REJECTED);
+            case 10 : application.setStatus(ApplicationStatus.PRELIMINARY);
+            case 11 : application.setStatus(ApplicationStatus.PRELIMINARY_PASSED);
+            case 19 : application.setStatus(ApplicationStatus.INTERVIEW_REJECTED);
+            case 20 : application.setStatus(ApplicationStatus.INTERVIEW);
+            case 21 : application.setStatus(ApplicationStatus.INTERVIEW_PASSED);
+        }
+
+        repository.save(ApplicationConverter.INSTANCE.toEntity(application));
+
         return application;
     }
 
@@ -84,9 +112,6 @@ public class ApplicationModuleImpl implements ApplicationModule{
     @Override
     public List<Application> getApplicationsByCandidateFirstname(String firstname) throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_Firstname(firstname);
-        if (applicationEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Applications not found for the given candidate firstname.");
-        }
         return  applicationEntities.stream()
                 .map(ApplicationConverter.INSTANCE::fromEntity)
                 .peek(application -> {
@@ -99,9 +124,6 @@ public class ApplicationModuleImpl implements ApplicationModule{
     @Override
     public List<Application> getApplicationsByCandidateLastname(String lastname) throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_Lastname(lastname);
-        if (applicationEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Applications not found for the given candidate lastname.");
-        }
         return  applicationEntities.stream()
                 .map(ApplicationConverter.INSTANCE::fromEntity)
                 .peek(application -> {
@@ -115,9 +137,6 @@ public class ApplicationModuleImpl implements ApplicationModule{
     public List<Application> getApplicationsByCandidateFullname(String fullname) throws CRUDOperationException {
         List<String> name = Arrays.stream(fullname.split(" ")).toList();
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_FirstnameAndCandidate_Lastname(name.get(0), name.get(1));
-        if (applicationEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Applications not found for the given candidate fullname.");
-        }
         return  applicationEntities.stream()
                 .map(ApplicationConverter.INSTANCE::fromEntity)
                 .peek(application -> {
@@ -130,9 +149,6 @@ public class ApplicationModuleImpl implements ApplicationModule{
     @Override
     public List<Application> getApplicationsByCandidateUuid(String candidateUuid) throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_Uuid(candidateUuid);
-        if (applicationEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Applications not found for the given candidate uuid.");
-        }
         return  applicationEntities.stream()
                 .map(ApplicationConverter.INSTANCE::fromEntity)
                 .peek(application -> {
@@ -145,9 +161,6 @@ public class ApplicationModuleImpl implements ApplicationModule{
     @Override
     public List<Application> getApplicationsByPositionUuid(String positionUuid) throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByPositionUuid(positionUuid);
-        if (applicationEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Applications not found for the given position uuid.");
-        }
         return  applicationEntities.stream()
                 .map(ApplicationConverter.INSTANCE::fromEntity)
                 .peek(application -> {
@@ -160,9 +173,6 @@ public class ApplicationModuleImpl implements ApplicationModule{
     @Override
     public List<Application> getAllApplications() throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.findAll();
-        if (applicationEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "There are no applications");
-        }
         return  applicationEntities.stream()
                 .map(ApplicationConverter.INSTANCE::fromEntity)
                 .peek(application -> {

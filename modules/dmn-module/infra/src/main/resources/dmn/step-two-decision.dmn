@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="definitions_16z0ul9" name="definitions" namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="17.0.2">
+  <decision id="decision_19xv9li" name="Step Two Evaluation">
+    <decisionTable id="decisionTable_07f9qys">
+      <input id="input1" label="score" biodi:width="192">
+        <inputExpression id="inputExpression1" typeRef="number">
+          <text>score</text>
+        </inputExpression>
+      </input>
+      <output id="output1" label="status" name="status" typeRef="string" />
+      <rule id="DecisionRule_12ib7yr">
+        <description>Score too low to qualify.</description>
+        <inputEntry id="UnaryTests_1gbb2ey">
+          <text>&lt; 0.4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07ifa7i">
+          <text>"Rejected"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_15xfa8t">
+        <description>Potential but needs review.</description>
+        <inputEntry id="UnaryTests_1mikx20">
+          <text>[0.4..0.8)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cpq9es">
+          <text>"Waitlisted"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z7limj">
+        <description>Meets the required criteria.</description>
+        <inputEntry id="UnaryTests_1469oo8">
+          <text>&gt;= 0.8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_154seg4">
+          <text>"Accepted"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_1o9aqsy">
+      <dmndi:DMNShape id="DMNShape_0h9sz0o" dmnElementRef="decision_19xv9ll">
+        <dc:Bounds height="80" width="180" x="150" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

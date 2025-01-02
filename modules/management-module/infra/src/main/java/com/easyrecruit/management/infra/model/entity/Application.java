@@ -18,6 +18,7 @@ public class Application {
     @JsonIgnore
     private String id;
     private String uuid = UUID.randomUUID().toString();
+    private ApplicationStatus status = ApplicationStatus.NEW;
     private Candidate candidate;
     private Position position;
     private Cv cv;

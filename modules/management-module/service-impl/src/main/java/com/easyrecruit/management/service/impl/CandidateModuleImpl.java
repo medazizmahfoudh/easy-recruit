@@ -107,10 +107,6 @@ public class CandidateModuleImpl implements CandidateModule {
 
         List<CandidateEntity> candidateEntities = repository.getCandidateEntityByFirstnameAndLastname(firstname, lastname);
 
-        if (candidateEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Candidates with the given fullname don't exist.");
-        }
-
         return candidateEntities.stream()
                 .map(CandidateConverter.INSTANCE::fromEntity)
                 .toList();
@@ -140,9 +136,6 @@ public class CandidateModuleImpl implements CandidateModule {
     @Override
     public List<Candidate> getCandidateByFirstname(String firstname) throws CRUDOperationException {
         List<CandidateEntity> candidateEntities = repository.getCandidateEntityByFirstname(firstname.toLowerCase());
-        if (candidateEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Candidates for the given firstname doesn't exist");
-        }
         return candidateEntities
                 .stream()
                 .map(CandidateConverter.INSTANCE::fromEntity)
@@ -152,10 +145,6 @@ public class CandidateModuleImpl implements CandidateModule {
     @Override
     public List<Candidate> getCandidateByLastname(String lastname) throws CRUDOperationException {
         List<CandidateEntity> candidateEntities = repository.getCandidateEntityByLastname(lastname.toLowerCase());
-        if (candidateEntities.isEmpty()) {
-            throw new CRUDOperationException(CRUDOperation.READ, "Candidates for the given lastname doesn't exist");
-
-        }
         return candidateEntities
                 .stream()
                 .map(CandidateConverter.INSTANCE::fromEntity)
