@@ -1,7 +1,7 @@
 com/easyrecruit/management/service/impl/PositionModuleImpl.class
 com/easyrecruit/management/service/impl/converter/PositionConverterImpl.class
-com/easyrecruit/management/service/impl/converter/CandidateConverterImpl.class
 com/easyrecruit/management/service/impl/converter/InterviewConverter.class
+com/easyrecruit/management/service/impl/converter/CandidateConverterImpl.class
 com/easyrecruit/management/service/impl/converter/RecruiterConverterImpl.class
 com/easyrecruit/management/service/impl/converter/ApplicationConverter.class
 com/easyrecruit/management/service/impl/converter/PositionConverter.class
@@ -18,5 +18,5 @@ com/easyrecruit/management/service/impl/converter/CvConverterImpl.class
 com/easyrecruit/management/service/impl/converter/EvaluationConverterImpl.class
 com/easyrecruit/management/service/impl/ApplicationModuleImpl.class
 com/easyrecruit/management/service/impl/converter/RecruiterConverter.class
-com/easyrecruit/management/service/impl/converter/ApplicationConverterImpl.class
 com/easyrecruit/management/service/impl/converter/EvaluationConverter.class
+com/easyrecruit/management/service/impl/converter/ApplicationConverterImpl.class

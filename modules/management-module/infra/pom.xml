@@ -46,6 +46,16 @@
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-annotations</artifactId>
       </dependency>
+    <dependency>
+      <groupId>com.easyrecruit</groupId>
+      <artifactId>easyrecruit-planification-dal</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.easyrecruit</groupId>
+      <artifactId>easyrecruit-planification-infra</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
 
 
