@@ -23,4 +23,5 @@ public class Recruiter {
     private String department;
     private String title;
 
+
 }

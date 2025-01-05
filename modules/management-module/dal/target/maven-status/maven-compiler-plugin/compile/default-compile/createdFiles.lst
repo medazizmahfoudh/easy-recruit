@@ -1,7 +1,7 @@
 com/easyrecruit/management/dal/entity/ApplicationEntity.class
 com/easyrecruit/management/dal/entity/EvaluationEntity.class
-com/easyrecruit/management/dal/document/CvDocument.class
 com/easyrecruit/management/dal/entity/InterviewEntity.class
+com/easyrecruit/management/dal/document/CvDocument.class
 com/easyrecruit/management/dal/repository/EvaluationRepository.class
 com/easyrecruit/management/dal/repository/ApplicationRepository.class
 com/easyrecruit/management/dal/repository/PositionRepository.class

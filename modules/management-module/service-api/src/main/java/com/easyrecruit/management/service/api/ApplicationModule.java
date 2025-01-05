@@ -4,7 +4,6 @@ import com.easyrecruit.management.infra.model.entity.Application;
 import com.easyrecruit.management.infra.model.payload.request.ApplicationSubmitOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -22,4 +21,7 @@ public interface ApplicationModule {
     List<Application> getAllApplications() throws CRUDOperationException;
     DeleteResponse deleteApplication(String applicationUuid) throws CRUDOperationException;
     DeleteResponse deleteAllApplications() throws CRUDOperationException;
+
+    // For evaluation module
+    List<Application> getAllNewApplications();
 }

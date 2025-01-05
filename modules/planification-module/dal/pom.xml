@@ -6,10 +6,6 @@
   <artifactId>easyrecruit-planification-dal</artifactId>
   <version>1.0.0</version>
 
-
-
-
-
   <properties>
     <compiler-plugin.version>3.13.0</compiler-plugin.version>
     <maven.compiler.release>17</maven.compiler.release>

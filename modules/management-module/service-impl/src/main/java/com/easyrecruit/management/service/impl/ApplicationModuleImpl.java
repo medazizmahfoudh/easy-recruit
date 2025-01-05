@@ -203,4 +203,9 @@ public class ApplicationModuleImpl implements ApplicationModule{
             return new DeleteResponse(OperationStatus.FAILURE, exception.getMessage());
         }
     }
+
+    @Override
+    public List<Application> getAllNewApplications() {
+        return List.of();
+    }
 }

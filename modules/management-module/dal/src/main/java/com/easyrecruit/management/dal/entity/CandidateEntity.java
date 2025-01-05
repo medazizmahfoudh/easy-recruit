@@ -1,15 +1,11 @@
 package com.easyrecruit.management.dal.entity;
 
-import com.easyrecruit.management.infra.model.entity.Skill;
-import com.easyrecruit.planification.entity.Availabilitty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Accessors(chain = true)

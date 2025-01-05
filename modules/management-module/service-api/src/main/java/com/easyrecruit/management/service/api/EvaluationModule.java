@@ -19,4 +19,9 @@ public interface EvaluationModule {
     Evaluation getEvaluation(String uuid);
     List<Evaluation> getEvaluationsByApplicationUuid(String applicationUuid);
     List<Evaluation> getEvaluationsByStatusAndStep(EvaluationStatus status, RecruitmentStep step);
+
+    // For evaluation module
+    Evaluation getEvaluationByApplicationUuidAndStepIsPreliminary(String applicationUuid);
+    Evaluation updateEvaluationScoreByApplicationUuidAndStatusIsNew(String applicationUuid, Double score, String feedback);
+
 }

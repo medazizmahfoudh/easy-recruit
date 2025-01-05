@@ -90,4 +90,14 @@ public class EvaluationModuleImpl implements EvaluationModule {
                 .map(EvaluationConverter.INSTANCE::fromEntity)
                 .toList();
     }
+
+    @Override
+    public Evaluation getEvaluationByApplicationUuidAndStepIsPreliminary(String applicationUuid) {
+        return null;
+    }
+
+    @Override
+    public Evaluation updateEvaluationScoreByApplicationUuidAndStatusIsNew(String applicationUuid, Double score, String feedback) {
+        return null;
+    }
 }
