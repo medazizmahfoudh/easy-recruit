@@ -1,0 +1,3 @@
+com\easyrecruit\evaluation\service\impl\PdfReader.class
+com\easyrecruit\evaluation\service\impl\CandidateService.class
+com\easyrecruit\evaluation\service\impl\LLMService.class
