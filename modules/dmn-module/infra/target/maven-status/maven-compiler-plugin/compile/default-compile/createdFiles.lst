@@ -1,5 +1,5 @@
-com/easyrecruit/dmn/infra/config/DmnInitializer.class
-com/easyrecruit/dmn/infra/ann/Step.class
-com/easyrecruit/dmn/infra/config/DmnConfiguration.class
-com/easyrecruit/dmn/infra/ann/DmnConfig.class
-com/easyrecruit/dmn/infra/model/StepModel.class
+com\easyrecruit\dmn\infra\ann\Step.class
+com\easyrecruit\dmn\infra\ann\DmnConfig.class
+com\easyrecruit\dmn\infra\config\DmnConfiguration.class
+com\easyrecruit\dmn\infra\config\DmnInitializer.class
+com\easyrecruit\dmn\infra\model\StepModel.class

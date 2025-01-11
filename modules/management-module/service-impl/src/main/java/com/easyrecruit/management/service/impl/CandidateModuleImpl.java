@@ -6,7 +6,6 @@ import com.easyrecruit.management.infra.model.entity.Candidate;
 import com.easyrecruit.management.infra.model.payload.request.CandidateCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
-import com.easyrecruit.management.service.api.ApplicationModule;
 import com.easyrecruit.management.service.api.CandidateModule;
 import com.easyrecruit.management.service.api.CvModule;
 import com.easyrecruit.management.service.api.exception.CRUDOperation;
@@ -164,5 +163,10 @@ public class CandidateModuleImpl implements CandidateModule {
         repository.deleteAll();
         cvModule.deleteAll();
         return new DeleteResponse(OperationStatus.SUCCESS, "Resource has been deleted.");
+    }
+
+    public CandidateEntity getCandidateById(Long id) {
+        Optional<CandidateEntity> candidate = repository.findById(id);
+        return candidate.orElseThrow(() -> new RuntimeException("Candidate not found with id " + id));  // Si non trouvé, lève une exception
     }
 }

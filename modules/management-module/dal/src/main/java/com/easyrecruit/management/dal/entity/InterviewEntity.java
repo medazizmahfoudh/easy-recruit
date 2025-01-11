@@ -32,14 +32,20 @@ public class InterviewEntity {
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "id", column = @Column(name = "recruiter_id")),
-            @AttributeOverride(name = "uuid", column = @Column(name = "recruiter_uuid")),
             @AttributeOverride(name = "firstname", column = @Column(name = "recruiter_firstname")),
             @AttributeOverride(name = "lastname", column = @Column(name = "recruiter_lastname")),
             @AttributeOverride(name = "department", column = @Column(name = "recruiter_department")),
             @AttributeOverride(name = "title", column = @Column(name = "recruiter_title")),
-    })
+            @AttributeOverride(name = "uuid", column = @Column(name = "recruiter_uuid"))}
+
+    )
+
+
     private Recruiter recruiter;
+
+
     @Embedded
+
     @AttributeOverrides({
             @AttributeOverride(name = "id", column = @Column(name = "candidate_id")),
             @AttributeOverride(name = "uuid", column = @Column(name = "candidate_uuid")),
@@ -49,7 +55,6 @@ public class InterviewEntity {
             @AttributeOverride(name = "cv", column = @Column(name = "candidate_cv")),
     })
     private Candidate candidate;
-
 
 
 }

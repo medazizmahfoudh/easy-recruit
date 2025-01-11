@@ -16,5 +16,6 @@
         <module>modules</module>
         <module>app</module>
         <module>core/service-restcli</module>
+
     </modules>
 </project>

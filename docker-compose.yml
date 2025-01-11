@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-easy-recruit
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: easy-recruit
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin-easy-recruit
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com # Email pour se connecter à pgAdmin
+      PGADMIN_DEFAULT_PASSWORD: admin         # Mot de passe pour se connecter à pgAdmin
+    ports:
+      - "5050:80" # Port externe 5050 mappé au port interne 80 de pgAdmin
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

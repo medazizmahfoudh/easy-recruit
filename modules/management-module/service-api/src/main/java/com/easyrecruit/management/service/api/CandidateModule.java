@@ -19,4 +19,5 @@ public interface CandidateModule {
     List<Candidate> getCandidateByLastname(String lastname) throws CRUDOperationException;
     List<Candidate> getAllCandidates() throws CRUDOperationException;
     DeleteResponse deleteAllCandidates() throws CRUDOperationException;
+
 }
