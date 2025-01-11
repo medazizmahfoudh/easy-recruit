@@ -20,5 +20,6 @@ public class Evaluation {
     private Double score = 0.00 ;
     private String decision;
     private EvaluationStatus status = EvaluationStatus.IDLE;
+    private String feedBack ;
 
 }

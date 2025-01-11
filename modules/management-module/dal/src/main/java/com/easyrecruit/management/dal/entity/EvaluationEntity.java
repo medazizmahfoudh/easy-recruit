@@ -27,4 +27,5 @@ public class EvaluationEntity {
     private Double score;
     private String decision;
     private EvaluationStatus status = EvaluationStatus.IDLE;
+    private String feedback;
 }

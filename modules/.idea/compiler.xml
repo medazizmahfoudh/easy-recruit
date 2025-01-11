@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="easyrecruit-evaluation-service-restcli" />
+        <module name="easyrecruit-evaluation-infra" />
+        <module name="com.easyrecruit.evaluation.dal" />
+        <module name="easyrecruit-dmn-service-impl" />
+        <module name="easyrecruit-dmn-service-api" />
+        <module name="easyrecruit-evaluation-service-api" />
+        <module name="easyrecruit-evaluation-ws-rest" />
+        <module name="easyrecruit-management-service-api" />
+        <module name="easyrecruit-evaluation-service-impl" />
+        <module name="easyrecruit-dmn-infra" />
+        <module name="easyrecruit-management-dal" />
+        <module name="easyrecruit-management-ws-rest" />
+        <module name="easyrecruit-management-infra" />
+        <module name="easyrecruit-management-service-restcli" />
+        <module name="easyrecruit.dmn.dal" />
+      </profile>
+      <profile name="Annotation profile for easyrecruit-modules-builder" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+        </processorPath>
+        <module name="easyrecruit-management-service-impl" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="easyrecruit-dmn-infra" options="-parameters" />
+      <module name="easyrecruit-dmn-service-api" options="-parameters" />
+      <module name="easyrecruit-dmn-service-impl" options="-parameters" />
+      <module name="easyrecruit-evaluation-infra" options="-parameters" />
+      <module name="easyrecruit-evaluation-service-api" options="-parameters" />
+      <module name="easyrecruit-evaluation-service-impl" options="-parameters" />
+      <module name="easyrecruit-evaluation-service-restcli" options="-parameters" />
+      <module name="easyrecruit-evaluation-ws-rest" options="-parameters" />
+      <module name="easyrecruit-management-dal" options="-parameters" />
+      <module name="easyrecruit-management-infra" options="-parameters" />
+      <module name="easyrecruit-management-service-api" options="-parameters" />
+      <module name="easyrecruit-management-service-impl" options="-parameters" />
+      <module name="easyrecruit-management-service-restcli" options="-parameters" />
+      <module name="easyrecruit-management-ws-rest" options="-parameters" />
+      <module name="easyrecruit.dmn.dal" options="-parameters" />
+    </option>
+  </component>
+</project>

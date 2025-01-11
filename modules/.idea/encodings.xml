@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/dmn-module/dal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dmn-module/infra/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dmn-module/service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dmn-module/service-impl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dmn-module/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dmn-module/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/dal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/dal/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/infra/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/service-impl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/service-rest-cli/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/evaluation-module/ws-rest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/dal/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/infra/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/service-impl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/service-restcli/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/management-module/ws-rest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

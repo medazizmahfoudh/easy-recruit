@@ -15,5 +15,12 @@
         <module>evaluation-module</module>
         <module>management-module</module>
         <module>dmn-module</module>
+        <module>evaluation-module/dal</module>
+        <module>evaluation-module/infra</module>
+        <module>evaluation-module/service-api</module>
+        <module>evaluation-module/service-impl</module>
+        <module>evaluation-module/service-restcli</module>
+        <module>evaluation-module/ws-rest</module>
+        <module>evaluation-module/service-restcli</module>
     </modules>
 </project>
