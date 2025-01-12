@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.UUID;
-
 @Accessors(chain = true)
 @Getter
 @Setter
@@ -15,5 +13,5 @@ import java.util.UUID;
 @Embeddable
 public class Skill {
     private String name;
-    private String level;
+    private Integer level;
 }

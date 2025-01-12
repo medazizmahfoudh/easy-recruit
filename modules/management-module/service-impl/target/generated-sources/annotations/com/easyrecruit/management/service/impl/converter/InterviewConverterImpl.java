@@ -1,12 +1,18 @@
 package com.easyrecruit.management.service.impl.converter;
 
+import com.easyrecruit.management.dal.entity.CandidateEntity;
 import com.easyrecruit.management.dal.entity.InterviewEntity;
+import com.easyrecruit.management.dal.entity.RecruiterEntity;
+import com.easyrecruit.management.infra.model.entity.Candidate;
 import com.easyrecruit.management.infra.model.entity.Interview;
+import com.easyrecruit.management.infra.model.entity.Position;
+import com.easyrecruit.management.infra.model.entity.Recruiter;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-02T22:49:36+0100",
+    date = "2025-01-12T12:32:55+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class InterviewConverterImpl implements InterviewConverter {
@@ -19,15 +25,17 @@ public class InterviewConverterImpl implements InterviewConverter {
 
         InterviewEntity interviewEntity = new InterviewEntity();
 
+        interviewEntity.setPositionUuid( interviewPositionUuid( Interview ) );
         if ( Interview.getId() != null ) {
             interviewEntity.setId( Long.parseLong( Interview.getId() ) );
         }
-        interviewEntity.setUuid( Interview.getUuid() );
+        if ( Interview.getUuid() != null ) {
+            interviewEntity.setUuid( UUID.fromString( Interview.getUuid() ) );
+        }
         interviewEntity.setDate( Interview.getDate() );
         interviewEntity.setLocation( Interview.getLocation() );
-        interviewEntity.setPositionUuid( Interview.getPositionUuid() );
-        interviewEntity.setRecruiter( Interview.getRecruiter() );
-        interviewEntity.setCandidate( Interview.getCandidate() );
+        interviewEntity.setRecruiter( recruiterToRecruiterEntity( Interview.getRecruiter() ) );
+        interviewEntity.setCandidate( candidateToCandidateEntity( Interview.getCandidate() ) );
 
         return interviewEntity;
     }
@@ -40,16 +48,120 @@ public class InterviewConverterImpl implements InterviewConverter {
 
         Interview interview = new Interview();
 
+        interview.setPosition( interviewEntityToPosition( InterviewEntity ) );
         if ( InterviewEntity.getId() != null ) {
             interview.setId( String.valueOf( InterviewEntity.getId() ) );
         }
-        interview.setUuid( InterviewEntity.getUuid() );
+        if ( InterviewEntity.getUuid() != null ) {
+            interview.setUuid( InterviewEntity.getUuid().toString() );
+        }
         interview.setDate( InterviewEntity.getDate() );
         interview.setLocation( InterviewEntity.getLocation() );
-        interview.setPositionUuid( InterviewEntity.getPositionUuid() );
-        interview.setRecruiter( InterviewEntity.getRecruiter() );
-        interview.setCandidate( InterviewEntity.getCandidate() );
+        interview.setRecruiter( recruiterEntityToRecruiter( InterviewEntity.getRecruiter() ) );
+        interview.setCandidate( candidateEntityToCandidate( InterviewEntity.getCandidate() ) );
 
         return interview;
+    }
+
+    private String interviewPositionUuid(Interview interview) {
+        Position position = interview.getPosition();
+        if ( position == null ) {
+            return null;
+        }
+        return position.getUuid();
+    }
+
+    protected RecruiterEntity recruiterToRecruiterEntity(Recruiter recruiter) {
+        if ( recruiter == null ) {
+            return null;
+        }
+
+        RecruiterEntity recruiterEntity = new RecruiterEntity();
+
+        if ( recruiter.getId() != null ) {
+            recruiterEntity.setId( Long.parseLong( recruiter.getId() ) );
+        }
+        if ( recruiter.getUuid() != null ) {
+            recruiterEntity.setUuid( UUID.fromString( recruiter.getUuid() ) );
+        }
+        recruiterEntity.setFirstname( recruiter.getFirstname() );
+        recruiterEntity.setLastname( recruiter.getLastname() );
+        recruiterEntity.setDepartment( recruiter.getDepartment() );
+        recruiterEntity.setTitle( recruiter.getTitle() );
+
+        return recruiterEntity;
+    }
+
+    protected CandidateEntity candidateToCandidateEntity(Candidate candidate) {
+        if ( candidate == null ) {
+            return null;
+        }
+
+        CandidateEntity candidateEntity = new CandidateEntity();
+
+        if ( candidate.getId() != null ) {
+            candidateEntity.setId( Long.parseLong( candidate.getId() ) );
+        }
+        if ( candidate.getUuid() != null ) {
+            candidateEntity.setUuid( UUID.fromString( candidate.getUuid() ) );
+        }
+        candidateEntity.setFirstname( candidate.getFirstname() );
+        candidateEntity.setLastname( candidate.getLastname() );
+        candidateEntity.setEmail( candidate.getEmail() );
+
+        return candidateEntity;
+    }
+
+    protected Position interviewEntityToPosition(InterviewEntity interviewEntity) {
+        if ( interviewEntity == null ) {
+            return null;
+        }
+
+        Position position = new Position();
+
+        position.setUuid( interviewEntity.getPositionUuid() );
+
+        return position;
+    }
+
+    protected Recruiter recruiterEntityToRecruiter(RecruiterEntity recruiterEntity) {
+        if ( recruiterEntity == null ) {
+            return null;
+        }
+
+        Recruiter recruiter = new Recruiter();
+
+        if ( recruiterEntity.getId() != null ) {
+            recruiter.setId( String.valueOf( recruiterEntity.getId() ) );
+        }
+        if ( recruiterEntity.getUuid() != null ) {
+            recruiter.setUuid( recruiterEntity.getUuid().toString() );
+        }
+        recruiter.setFirstname( recruiterEntity.getFirstname() );
+        recruiter.setLastname( recruiterEntity.getLastname() );
+        recruiter.setDepartment( recruiterEntity.getDepartment() );
+        recruiter.setTitle( recruiterEntity.getTitle() );
+
+        return recruiter;
+    }
+
+    protected Candidate candidateEntityToCandidate(CandidateEntity candidateEntity) {
+        if ( candidateEntity == null ) {
+            return null;
+        }
+
+        Candidate candidate = new Candidate();
+
+        if ( candidateEntity.getId() != null ) {
+            candidate.setId( String.valueOf( candidateEntity.getId() ) );
+        }
+        if ( candidateEntity.getUuid() != null ) {
+            candidate.setUuid( candidateEntity.getUuid().toString() );
+        }
+        candidate.setFirstname( candidateEntity.getFirstname() );
+        candidate.setLastname( candidateEntity.getLastname() );
+        candidate.setEmail( candidateEntity.getEmail() );
+
+        return candidate;
     }
 }

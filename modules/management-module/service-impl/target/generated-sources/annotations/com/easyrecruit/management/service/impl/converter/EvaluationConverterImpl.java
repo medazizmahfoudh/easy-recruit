@@ -2,11 +2,12 @@ package com.easyrecruit.management.service.impl.converter;
 
 import com.easyrecruit.management.dal.entity.EvaluationEntity;
 import com.easyrecruit.management.infra.model.entity.Evaluation;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-02T22:49:36+0100",
+    date = "2025-01-12T12:32:55+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class EvaluationConverterImpl implements EvaluationConverter {
@@ -20,7 +21,9 @@ public class EvaluationConverterImpl implements EvaluationConverter {
         EvaluationEntity evaluationEntity = new EvaluationEntity();
 
         evaluationEntity.setId( evaluation.getId() );
-        evaluationEntity.setUuid( evaluation.getUuid() );
+        if ( evaluation.getUuid() != null ) {
+            evaluationEntity.setUuid( UUID.fromString( evaluation.getUuid() ) );
+        }
         evaluationEntity.setApplicationUuid( evaluation.getApplicationUuid() );
         evaluationEntity.setStep( evaluation.getStep() );
         evaluationEntity.setScore( evaluation.getScore() );
@@ -39,7 +42,9 @@ public class EvaluationConverterImpl implements EvaluationConverter {
         Evaluation evaluation = new Evaluation();
 
         evaluation.setId( evaluationEntity.getId() );
-        evaluation.setUuid( evaluationEntity.getUuid() );
+        if ( evaluationEntity.getUuid() != null ) {
+            evaluation.setUuid( evaluationEntity.getUuid().toString() );
+        }
         evaluation.setApplicationUuid( evaluationEntity.getApplicationUuid() );
         evaluation.setStep( evaluationEntity.getStep() );
         evaluation.setScore( evaluationEntity.getScore() );

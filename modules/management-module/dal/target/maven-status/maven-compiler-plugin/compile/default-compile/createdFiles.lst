@@ -7,6 +7,7 @@ com/easyrecruit/management/dal/repository/ApplicationRepository.class
 com/easyrecruit/management/dal/repository/PositionRepository.class
 com/easyrecruit/management/dal/entity/CandidateEntity.class
 com/easyrecruit/management/dal/entity/RecruiterEntity.class
+com/easyrecruit/management/dal/converter/UUIDConverter.class
 com/easyrecruit/management/dal/repository/CvRepository.class
 com/easyrecruit/management/dal/document/PositionDocument.class
 com/easyrecruit/management/dal/repository/InterviewRepository.class

@@ -1,4 +1,5 @@
 /home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/EvaluationRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/converter/UUIDConverter.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/RecruiterRepository.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/repository/ApplicationRepository.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/management-module/dal/src/main/java/com/easyrecruit/management/dal/document/PositionDocument.java

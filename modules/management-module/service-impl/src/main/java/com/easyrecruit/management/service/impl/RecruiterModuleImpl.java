@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class RecruiterModuleImpl implements RecruiterModule {
@@ -39,7 +40,7 @@ public class RecruiterModuleImpl implements RecruiterModule {
 
     @Override
     public Recruiter updateRecruiter(RecruiterCreateOrUpdateRequest request, String recruiterUuid) throws CRUDOperationException {
-        Optional<RecruiterEntity> existingRecruiter = repository.getRecruiterEntityByUuid(recruiterUuid);
+        Optional<RecruiterEntity> existingRecruiter = repository.getRecruiterEntityByUuid(UUID.fromString(recruiterUuid));
         if (existingRecruiter.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.UPDATE, "Recruiter with the given uuid not found.");
         }
@@ -64,7 +65,7 @@ public class RecruiterModuleImpl implements RecruiterModule {
 
     @Override
     public DeleteResponse deleteRecruiter(String recruiterUuid) throws CRUDOperationException {
-        Optional<RecruiterEntity> recruiterEntity = repository.getRecruiterEntityByUuid(recruiterUuid);
+        Optional<RecruiterEntity> recruiterEntity = repository.getRecruiterEntityByUuid(UUID.fromString(recruiterUuid));
         if (recruiterEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Recruiter for the given uuid doesn't exist");
         }
@@ -74,7 +75,7 @@ public class RecruiterModuleImpl implements RecruiterModule {
 
     @Override
     public Recruiter getRecruiterByUuid(String uuid) throws CRUDOperationException {
-        Optional<RecruiterEntity> recruiterEntity = repository.getRecruiterEntityByUuid(uuid);
+        Optional<RecruiterEntity> recruiterEntity = repository.getRecruiterEntityByUuid(UUID.fromString(uuid));
         if (recruiterEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Recruiter for the given uuid doesn't exist");
         }

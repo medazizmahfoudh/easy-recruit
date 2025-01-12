@@ -20,11 +20,11 @@ public class Interview {
     private String uuid = UUID.randomUUID().toString();
     private Date date;
     private String location;
-    private String positionUuid;
+    private Position position;
     private Evaluation evaluation;
     private Recruiter recruiter;
     private Candidate candidate;
-    private InterviewStatus status;
+    private InterviewStatus status = InterviewStatus.SCHEDULED;
     private String comment;
 
 

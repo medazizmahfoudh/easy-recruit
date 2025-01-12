@@ -2,11 +2,12 @@ package com.easyrecruit.management.service.impl.converter;
 
 import com.easyrecruit.management.dal.entity.RecruiterEntity;
 import com.easyrecruit.management.infra.model.entity.Recruiter;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-02T22:49:36+0100",
+    date = "2025-01-12T12:32:55+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class RecruiterConverterImpl implements RecruiterConverter {
@@ -22,7 +23,9 @@ public class RecruiterConverterImpl implements RecruiterConverter {
         if ( Recruiter.getId() != null ) {
             recruiterEntity.setId( Long.parseLong( Recruiter.getId() ) );
         }
-        recruiterEntity.setUuid( Recruiter.getUuid() );
+        if ( Recruiter.getUuid() != null ) {
+            recruiterEntity.setUuid( UUID.fromString( Recruiter.getUuid() ) );
+        }
         recruiterEntity.setFirstname( Recruiter.getFirstname() );
         recruiterEntity.setLastname( Recruiter.getLastname() );
         recruiterEntity.setDepartment( Recruiter.getDepartment() );
@@ -42,7 +45,9 @@ public class RecruiterConverterImpl implements RecruiterConverter {
         if ( RecruiterEntity.getId() != null ) {
             recruiter.setId( String.valueOf( RecruiterEntity.getId() ) );
         }
-        recruiter.setUuid( RecruiterEntity.getUuid() );
+        if ( RecruiterEntity.getUuid() != null ) {
+            recruiter.setUuid( RecruiterEntity.getUuid().toString() );
+        }
         recruiter.setFirstname( RecruiterEntity.getFirstname() );
         recruiter.setLastname( RecruiterEntity.getLastname() );
         recruiter.setDepartment( RecruiterEntity.getDepartment() );

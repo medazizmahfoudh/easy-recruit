@@ -1,14 +1,17 @@
 package com.easyrecruit.management.service.impl.converter;
 
 import com.easyrecruit.management.dal.entity.ApplicationEntity;
+import com.easyrecruit.management.dal.entity.CandidateEntity;
 import com.easyrecruit.management.infra.model.Cv;
 import com.easyrecruit.management.infra.model.entity.Application;
+import com.easyrecruit.management.infra.model.entity.Candidate;
 import com.easyrecruit.management.infra.model.entity.Position;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-02T22:49:36+0100",
+    date = "2025-01-12T12:32:55+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class ApplicationConverterImpl implements ApplicationConverter {
@@ -26,8 +29,10 @@ public class ApplicationConverterImpl implements ApplicationConverter {
         if ( application.getId() != null ) {
             applicationEntity.setId( Long.parseLong( application.getId() ) );
         }
-        applicationEntity.setUuid( application.getUuid() );
-        applicationEntity.setCandidate( application.getCandidate() );
+        if ( application.getUuid() != null ) {
+            applicationEntity.setUuid( UUID.fromString( application.getUuid() ) );
+        }
+        applicationEntity.setCandidate( candidateToCandidateEntity( application.getCandidate() ) );
         applicationEntity.setStatus( application.getStatus() );
 
         return applicationEntity;
@@ -41,12 +46,15 @@ public class ApplicationConverterImpl implements ApplicationConverter {
 
         Application application = new Application();
 
+        application.setPosition( applicationEntityToPosition( applicationEntity ) );
         if ( applicationEntity.getId() != null ) {
             application.setId( String.valueOf( applicationEntity.getId() ) );
         }
-        application.setUuid( applicationEntity.getUuid() );
+        if ( applicationEntity.getUuid() != null ) {
+            application.setUuid( applicationEntity.getUuid().toString() );
+        }
         application.setStatus( applicationEntity.getStatus() );
-        application.setCandidate( applicationEntity.getCandidate() );
+        application.setCandidate( candidateEntityToCandidate( applicationEntity.getCandidate() ) );
 
         return application;
     }
@@ -65,5 +73,57 @@ public class ApplicationConverterImpl implements ApplicationConverter {
             return null;
         }
         return position.getUuid();
+    }
+
+    protected CandidateEntity candidateToCandidateEntity(Candidate candidate) {
+        if ( candidate == null ) {
+            return null;
+        }
+
+        CandidateEntity candidateEntity = new CandidateEntity();
+
+        if ( candidate.getId() != null ) {
+            candidateEntity.setId( Long.parseLong( candidate.getId() ) );
+        }
+        if ( candidate.getUuid() != null ) {
+            candidateEntity.setUuid( UUID.fromString( candidate.getUuid() ) );
+        }
+        candidateEntity.setFirstname( candidate.getFirstname() );
+        candidateEntity.setLastname( candidate.getLastname() );
+        candidateEntity.setEmail( candidate.getEmail() );
+
+        return candidateEntity;
+    }
+
+    protected Position applicationEntityToPosition(ApplicationEntity applicationEntity) {
+        if ( applicationEntity == null ) {
+            return null;
+        }
+
+        Position position = new Position();
+
+        position.setUuid( applicationEntity.getPositionUuid() );
+
+        return position;
+    }
+
+    protected Candidate candidateEntityToCandidate(CandidateEntity candidateEntity) {
+        if ( candidateEntity == null ) {
+            return null;
+        }
+
+        Candidate candidate = new Candidate();
+
+        if ( candidateEntity.getId() != null ) {
+            candidate.setId( String.valueOf( candidateEntity.getId() ) );
+        }
+        if ( candidateEntity.getUuid() != null ) {
+            candidate.setUuid( candidateEntity.getUuid().toString() );
+        }
+        candidate.setFirstname( candidateEntity.getFirstname() );
+        candidate.setLastname( candidateEntity.getLastname() );
+        candidate.setEmail( candidateEntity.getEmail() );
+
+        return candidate;
     }
 }

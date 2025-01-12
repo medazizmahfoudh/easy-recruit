@@ -6,7 +6,6 @@ import com.easyrecruit.management.infra.model.entity.Candidate;
 import com.easyrecruit.management.infra.model.payload.request.CandidateCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
-import com.easyrecruit.management.service.api.ApplicationModule;
 import com.easyrecruit.management.service.api.CandidateModule;
 import com.easyrecruit.management.service.api.CvModule;
 import com.easyrecruit.management.service.api.exception.CRUDOperation;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CandidateModuleImpl implements CandidateModule {
@@ -47,7 +47,7 @@ public class CandidateModuleImpl implements CandidateModule {
 
     @Override
     public Candidate updateCandidate(CandidateCreateOrUpdateRequest request, String candidateUuid) throws CRUDOperationException {
-        Optional<CandidateEntity> oldCandidateEntity = repository.getCandidateEntityByUuid(candidateUuid);
+        Optional<CandidateEntity> oldCandidateEntity = repository.getCandidateEntityByUuid(UUID.fromString(candidateUuid));
         if (oldCandidateEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.UPDATE, "Candidate not found.");
         }
@@ -70,7 +70,7 @@ public class CandidateModuleImpl implements CandidateModule {
 
     @Override
     public DeleteResponse deleteCandidate(String candidateUuid) throws CRUDOperationException {
-        Optional<CandidateEntity> candidateEntity = repository.getCandidateEntityByUuid(candidateUuid);
+        Optional<CandidateEntity> candidateEntity = repository.getCandidateEntityByUuid(UUID.fromString(candidateUuid));
         if (candidateEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Candidate for the given uuid doesn't exist");
         }
@@ -80,7 +80,7 @@ public class CandidateModuleImpl implements CandidateModule {
 
     @Override
     public Candidate getCandidateByUuid(String uuid) throws CRUDOperationException {
-        Optional<CandidateEntity> candidateEntity = repository.getCandidateEntityByUuid(uuid);
+        Optional<CandidateEntity> candidateEntity = repository.getCandidateEntityByUuid(UUID.fromString(uuid));
         if (candidateEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Candidate for the given uuid doesn't exist");
         }

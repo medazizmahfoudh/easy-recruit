@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class EvaluationModuleImpl implements EvaluationModule {
@@ -40,7 +41,7 @@ public class EvaluationModuleImpl implements EvaluationModule {
 
     @Override
     public Evaluation updateEvaluationScore(String uuid, Double score) {
-        Optional<EvaluationEntity> evaluationEntity = repository.findByUuid(uuid);
+        Optional<EvaluationEntity> evaluationEntity = repository.findByUuid(UUID.fromString(uuid));
         if (evaluationEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Evaluation not found");
         }
@@ -52,7 +53,7 @@ public class EvaluationModuleImpl implements EvaluationModule {
 
     @Override
     public DeleteResponse deleteEvaluation(String uuid) {
-        repository.deleteByUuid(uuid);
+        repository.deleteByUuid(UUID.fromString(uuid));
         return new DeleteResponse(OperationStatus.SUCCESS, "Resource has been successfully deleted");
 
     }
@@ -67,7 +68,7 @@ public class EvaluationModuleImpl implements EvaluationModule {
 
     @Override
     public Evaluation getEvaluation(String uuid) {
-        Optional<EvaluationEntity> evaluationEntity = repository.findByUuid(uuid);
+        Optional<EvaluationEntity> evaluationEntity = repository.findByUuid(UUID.fromString(uuid));
         if (evaluationEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Evaluation for the given uuid does not exist");
         }

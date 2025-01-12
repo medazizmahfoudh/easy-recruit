@@ -12,6 +12,7 @@ public interface ApplicationConverter {
     @Mapping(source = "cv.uuid", target = "cvUuid")
     @Mapping(source = "position.uuid", target = "positionUuid")
     ApplicationEntity toEntity(Application application);
+    @Mapping(source = "positionUuid", target = "position.uuid")
     Application fromEntity(ApplicationEntity applicationEntity);
 
 }

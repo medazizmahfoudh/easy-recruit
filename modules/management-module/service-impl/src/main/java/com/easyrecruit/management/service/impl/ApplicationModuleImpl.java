@@ -11,12 +11,14 @@ import com.easyrecruit.management.service.api.*;
 import com.easyrecruit.management.service.api.exception.CRUDOperation;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;
 import com.easyrecruit.management.service.impl.converter.ApplicationConverter;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ApplicationModuleImpl implements ApplicationModule{
@@ -36,7 +38,7 @@ public class ApplicationModuleImpl implements ApplicationModule{
     @Override
     public Application createApplication(ApplicationSubmitOrUpdateRequest request) throws CRUDOperationException {
 
-        if (repository.existsByCandidate_UuidAndPositionUuid(request.getCandidateUuid(), request.getPositionUuid())) {
+        if (repository.existsByCandidate_UuidAndPositionUuid(UUID.fromString(request.getCandidateUuid()), request.getPositionUuid())) {
             throw new CRUDOperationException(CRUDOperation.CREATE, "Application for the given candidate (uuid) and position (uuid) already exists");
         }
 
@@ -62,19 +64,16 @@ public class ApplicationModuleImpl implements ApplicationModule{
 
     @Override
     public Application getApplicationByUuid(String uuid) throws CRUDOperationException {
-        Optional<ApplicationEntity> applicationEntity = repository.getApplicationEntityByUuid(uuid);
+        Optional<ApplicationEntity> applicationEntity = repository.getApplicationEntityByUuid(UUID.fromString(uuid));
         if (applicationEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Application not found for the given uuid.");
         }
-        Application application = ApplicationConverter.INSTANCE.fromEntity(applicationEntity.get());
-        Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
-        application.setCv(cv);
-        return application;
+        return getApplication(applicationEntity);
     }
 
     @Override
     public Application updateApplicationStatus(String applicationUuid, Integer applicationStatus) throws CRUDOperationException {
-        Optional<ApplicationEntity> applicationEntity = repository.getApplicationEntityByUuid(applicationUuid);
+        Optional<ApplicationEntity> applicationEntity = repository.getApplicationEntityByUuid(UUID.fromString(applicationUuid));
         if (applicationEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Application not found for the given uuid.");
         }
@@ -93,91 +92,78 @@ public class ApplicationModuleImpl implements ApplicationModule{
         }
 
         repository.save(ApplicationConverter.INSTANCE.toEntity(application));
+        Position position = positionModule.getPositionByUuid(application.getPosition().getUuid());
+        application.setPosition(position);
 
         return application;
     }
 
     @Override
     public Application getApplicationByCandidateUuidAndPositionUuid(String candidateUuid, String positionUuid) throws CRUDOperationException {
-        Optional<ApplicationEntity> applicationEntity = repository.getApplicationEntityByCandidate_UuidAndPositionUuid(candidateUuid, positionUuid);
+        Optional<ApplicationEntity> applicationEntity = repository.getApplicationEntityByCandidate_UuidAndPositionUuid(UUID.fromString(candidateUuid), positionUuid);
         if (applicationEntity.isEmpty()) {
             throw new CRUDOperationException(CRUDOperation.READ, "Application not found for the given candidate uuid and position uuid.");
         }
+        return getApplication(applicationEntity);
+    }
+
+    @NotNull
+    private Application getApplication(Optional<ApplicationEntity> applicationEntity) {
         Application application = ApplicationConverter.INSTANCE.fromEntity(applicationEntity.get());
         Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
         application.setCv(cv);
+        Position position = positionModule.getPositionByUuid(application.getPosition().getUuid());
+        application.setPosition(position);
+
         return application;
     }
 
     @Override
     public List<Application> getApplicationsByCandidateFirstname(String firstname) throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_Firstname(firstname);
-        return  applicationEntities.stream()
-                .map(ApplicationConverter.INSTANCE::fromEntity)
-                .peek(application -> {
-                    Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
-                    application.setCv(cv);
-                })
-                .toList();
+        return getApplications(applicationEntities);
     }
 
     @Override
     public List<Application> getApplicationsByCandidateLastname(String lastname) throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_Lastname(lastname);
-        return  applicationEntities.stream()
-                .map(ApplicationConverter.INSTANCE::fromEntity)
-                .peek(application -> {
-                    Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
-                    application.setCv(cv);
-                })
-                .toList();
+        return getApplications(applicationEntities);
     }
 
     @Override
     public List<Application> getApplicationsByCandidateFullname(String fullname) throws CRUDOperationException {
         List<String> name = Arrays.stream(fullname.split(" ")).toList();
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_FirstnameAndCandidate_Lastname(name.get(0), name.get(1));
-        return  applicationEntities.stream()
-                .map(ApplicationConverter.INSTANCE::fromEntity)
-                .peek(application -> {
-                    Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
-                    application.setCv(cv);
-                })
-                .toList();
+        return getApplications(applicationEntities);
     }
 
     @Override
     public List<Application> getApplicationsByCandidateUuid(String candidateUuid) throws CRUDOperationException {
-        List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_Uuid(candidateUuid);
-        return  applicationEntities.stream()
-                .map(ApplicationConverter.INSTANCE::fromEntity)
-                .peek(application -> {
-                    Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
-                    application.setCv(cv);
-                })
-                .toList();
+        List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByCandidate_Uuid(UUID.fromString(candidateUuid));
+        return getApplications(applicationEntities);
     }
 
     @Override
     public List<Application> getApplicationsByPositionUuid(String positionUuid) throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.getApplicationEntitiesByPositionUuid(positionUuid);
-        return  applicationEntities.stream()
-                .map(ApplicationConverter.INSTANCE::fromEntity)
-                .peek(application -> {
-                    Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
-                    application.setCv(cv);
-                })
-                .toList();
+        return getApplications(applicationEntities);
     }
 
     @Override
     public List<Application> getAllApplications() throws CRUDOperationException {
         List<ApplicationEntity> applicationEntities = repository.findAll();
+        return getApplications(applicationEntities);
+    }
+
+    @NotNull
+    private List<Application> getApplications(List<ApplicationEntity> applicationEntities) {
         return  applicationEntities.stream()
                 .map(ApplicationConverter.INSTANCE::fromEntity)
                 .peek(application -> {
                     Cv cv = cvModule.getCvByApplicationUuid(application.getUuid());
                     application.setCv(cv);
+                    Position position = positionModule.getPositionByUuid(application.getPosition().getUuid());
+                    application.setPosition(position);
                 })
                 .toList();
     }
@@ -185,7 +171,7 @@ public class ApplicationModuleImpl implements ApplicationModule{
     @Override
     public DeleteResponse deleteApplication(String applicationUuid) throws CRUDOperationException {
         try {
-            repository.deleteApplicationEntityByUuid(applicationUuid);
+            repository.deleteApplicationEntityByUuid(UUID.fromString(applicationUuid));
             cvModule.deleteCvByApplicationUuid(applicationUuid);
             return new DeleteResponse(OperationStatus.SUCCESS, "Application has been deleted.");
         } catch (Exception exception) {

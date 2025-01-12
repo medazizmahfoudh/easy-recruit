@@ -8,12 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface EvaluationRepository extends JpaRepository<EvaluationEntity, Integer> {
 
-    Optional<EvaluationEntity> findByUuid(String uuid);
+    Optional<EvaluationEntity> findByUuid(UUID uuid);
     List<EvaluationEntity> findEvaluationEntitiesByApplicationUuid(String applicationUuid);
-    void deleteByUuid(String uuid);
+    void deleteByUuid(UUID uuid);
     List<EvaluationEntity> getEvaluationEntitiesByStatusAndStep(EvaluationStatus status, RecruitmentStep step);
 }

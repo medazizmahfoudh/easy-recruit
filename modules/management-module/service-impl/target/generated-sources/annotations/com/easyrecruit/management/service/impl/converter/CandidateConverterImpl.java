@@ -2,11 +2,12 @@ package com.easyrecruit.management.service.impl.converter;
 
 import com.easyrecruit.management.dal.entity.CandidateEntity;
 import com.easyrecruit.management.infra.model.entity.Candidate;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-02T22:49:36+0100",
+    date = "2025-01-12T12:32:55+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class CandidateConverterImpl implements CandidateConverter {
@@ -22,7 +23,9 @@ public class CandidateConverterImpl implements CandidateConverter {
         if ( Candidate.getId() != null ) {
             candidateEntity.setId( Long.parseLong( Candidate.getId() ) );
         }
-        candidateEntity.setUuid( Candidate.getUuid() );
+        if ( Candidate.getUuid() != null ) {
+            candidateEntity.setUuid( UUID.fromString( Candidate.getUuid() ) );
+        }
         candidateEntity.setFirstname( Candidate.getFirstname() );
         candidateEntity.setLastname( Candidate.getLastname() );
         candidateEntity.setEmail( Candidate.getEmail() );
@@ -41,7 +44,9 @@ public class CandidateConverterImpl implements CandidateConverter {
         if ( CandidateEntity.getId() != null ) {
             candidate.setId( String.valueOf( CandidateEntity.getId() ) );
         }
-        candidate.setUuid( CandidateEntity.getUuid() );
+        if ( CandidateEntity.getUuid() != null ) {
+            candidate.setUuid( CandidateEntity.getUuid().toString() );
+        }
         candidate.setFirstname( CandidateEntity.getFirstname() );
         candidate.setLastname( CandidateEntity.getLastname() );
         candidate.setEmail( CandidateEntity.getEmail() );
