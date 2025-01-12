@@ -1,9 +1,11 @@
 package com.easyrecruit.management.service.impl.converter;
 
 import com.easyrecruit.management.dal.entity.CandidateEntity;
+import com.easyrecruit.management.dal.entity.EvaluationEntity;
 import com.easyrecruit.management.dal.entity.InterviewEntity;
 import com.easyrecruit.management.dal.entity.RecruiterEntity;
 import com.easyrecruit.management.infra.model.entity.Candidate;
+import com.easyrecruit.management.infra.model.entity.Evaluation;
 import com.easyrecruit.management.infra.model.entity.Interview;
 import com.easyrecruit.management.infra.model.entity.Position;
 import com.easyrecruit.management.infra.model.entity.Recruiter;
@@ -12,7 +14,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-12T12:32:55+0100",
+    date = "2025-01-12T14:30:05+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class InterviewConverterImpl implements InterviewConverter {
@@ -36,6 +38,7 @@ public class InterviewConverterImpl implements InterviewConverter {
         interviewEntity.setLocation( Interview.getLocation() );
         interviewEntity.setRecruiter( recruiterToRecruiterEntity( Interview.getRecruiter() ) );
         interviewEntity.setCandidate( candidateToCandidateEntity( Interview.getCandidate() ) );
+        interviewEntity.setEvaluation( evaluationToEvaluationEntity( Interview.getEvaluation() ) );
 
         return interviewEntity;
     }
@@ -57,6 +60,7 @@ public class InterviewConverterImpl implements InterviewConverter {
         }
         interview.setDate( InterviewEntity.getDate() );
         interview.setLocation( InterviewEntity.getLocation() );
+        interview.setEvaluation( evaluationEntityToEvaluation( InterviewEntity.getEvaluation() ) );
         interview.setRecruiter( recruiterEntityToRecruiter( InterviewEntity.getRecruiter() ) );
         interview.setCandidate( candidateEntityToCandidate( InterviewEntity.getCandidate() ) );
 
@@ -112,6 +116,26 @@ public class InterviewConverterImpl implements InterviewConverter {
         return candidateEntity;
     }
 
+    protected EvaluationEntity evaluationToEvaluationEntity(Evaluation evaluation) {
+        if ( evaluation == null ) {
+            return null;
+        }
+
+        EvaluationEntity evaluationEntity = new EvaluationEntity();
+
+        evaluationEntity.setId( evaluation.getId() );
+        if ( evaluation.getUuid() != null ) {
+            evaluationEntity.setUuid( UUID.fromString( evaluation.getUuid() ) );
+        }
+        evaluationEntity.setApplicationUuid( evaluation.getApplicationUuid() );
+        evaluationEntity.setStep( evaluation.getStep() );
+        evaluationEntity.setScore( evaluation.getScore() );
+        evaluationEntity.setDecision( evaluation.getDecision() );
+        evaluationEntity.setStatus( evaluation.getStatus() );
+
+        return evaluationEntity;
+    }
+
     protected Position interviewEntityToPosition(InterviewEntity interviewEntity) {
         if ( interviewEntity == null ) {
             return null;
@@ -122,6 +146,26 @@ public class InterviewConverterImpl implements InterviewConverter {
         position.setUuid( interviewEntity.getPositionUuid() );
 
         return position;
+    }
+
+    protected Evaluation evaluationEntityToEvaluation(EvaluationEntity evaluationEntity) {
+        if ( evaluationEntity == null ) {
+            return null;
+        }
+
+        Evaluation evaluation = new Evaluation();
+
+        evaluation.setId( evaluationEntity.getId() );
+        if ( evaluationEntity.getUuid() != null ) {
+            evaluation.setUuid( evaluationEntity.getUuid().toString() );
+        }
+        evaluation.setApplicationUuid( evaluationEntity.getApplicationUuid() );
+        evaluation.setStep( evaluationEntity.getStep() );
+        evaluation.setScore( evaluationEntity.getScore() );
+        evaluation.setDecision( evaluationEntity.getDecision() );
+        evaluation.setStatus( evaluationEntity.getStatus() );
+
+        return evaluation;
     }
 
     protected Recruiter recruiterEntityToRecruiter(RecruiterEntity recruiterEntity) {

@@ -1,13 +1,13 @@
 package com.easyrecruit.management.dal.document;
 
 import com.easyrecruit.management.infra.model.entity.Skill;
-import jakarta.persistence.*;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.Set;
+import java.util.List;
 
 @Accessors(chain = true)
 @Getter
@@ -21,6 +21,6 @@ public class PositionDocument {
     private String name;
     private String description;
     private String location;
-    private Set<Skill> requiredSkillSet;
+    private List<Skill> requiredSkills;
 
 }

@@ -4,5 +4,5 @@ import com.easyrecruit.management.infra.model.entity.Skill;
 
 import java.util.List;
 
-public record PositionCreateOrUpdateRequest(String name, String description, String location, List<Skill> skillSet) {
+public record PositionCreateOrUpdateRequest(String name, String description, String location, List<Skill> skills) {
 }

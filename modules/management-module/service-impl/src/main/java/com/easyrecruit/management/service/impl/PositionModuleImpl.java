@@ -28,7 +28,7 @@ public class PositionModuleImpl implements PositionModule {
                 .setName(request.name())
                 .setDescription(request.description())
                 .setLocation(request.location())
-                .setRequiredSkills(request.skillSet());
+                .setRequiredSkills(request.skills());
 
         PositionDocument positionDocument = PositionConverter.INSTANCE.toEntity(position);
         repository.save(positionDocument);
