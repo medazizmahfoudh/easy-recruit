@@ -25,5 +25,41 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>5.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.easyrecruit</groupId>
+            <artifactId>easyrecruit-management-service-impl</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-core</artifactId>
+            <version>0.36.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.easyrecruit</groupId>
+            <artifactId>easyrecruit-evaluation-infra</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.18.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.easyrecruit</groupId>
+            <artifactId>easyrecruit-evaluation-service-api</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
