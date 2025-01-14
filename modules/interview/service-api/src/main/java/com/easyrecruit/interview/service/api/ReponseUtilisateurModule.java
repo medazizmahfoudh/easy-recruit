@@ -1,33 +1,11 @@
 package com.easyrecruit.interview.service.api;
 
 import com.easyrecruit.interview.dal.entity.ReponseUtilisateurEntity;
-import com.easyrecruit.interview.dal.repository.ResponseUtilisateurRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.easyrecruit.interview.infra.Entity.ReponseUtilisateur;
 
 import java.util.List;
-@Service
-public class ReponseUtilisateurService {
-    @Autowired
-    private ResponseUtilisateurRepository reponseUtilisateurRepository;
+public interface  ReponseUtilisateurModule {
+    void saveUserAnswers(List<ReponseUtilisateurEntity> reponsesUtilisateur);
 
-    /**
-     * Enregistre les réponses des utilisateurs.
-     *
-     * @param reponsesUtilisateur Liste des réponses des utilisateurs à enregistrer.
-     */
-    public void saveUserAnswers(List<ReponseUtilisateurEntity> reponsesUtilisateur) {
-        reponseUtilisateurRepository.saveAll(reponsesUtilisateur);
-    }
-
-
-    /**
-     * Récupère toutes les réponses d'un candidat spécifique.
-     *
-     * @param candidatId L'ID du candidat.
-     * @return Liste des réponses utilisateur associées à ce candidat.
-     */
-    public List<ReponseUtilisateurEntity> getUserAnswersByCandidatId(Long candidatId) {
-        return reponseUtilisateurRepository.findByCandidatId(candidatId);
-    }
+    List<ReponseUtilisateur> getUserAnswersByCandidatId(Long candidatId);
 }

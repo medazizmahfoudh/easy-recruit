@@ -1,11 +1,12 @@
 package com.easyrecruit.interview.ws.rest;
 
 
-import com.easyrecruit.interview.dal.entity.Question;
-import com.easyrecruit.interview.dal.entity.Reponse;
-import com.easyrecruit.interview.infra.QuestionWithAnswersDto;
-import com.easyrecruit.interview.infra.QuestionWithResponsesDTO;
-import com.easyrecruit.interview.service.api.QuestionService;
+import com.easyrecruit.interview.dal.entity.QuestionEntity;
+import com.easyrecruit.interview.dal.entity.ReponseEntity;
+import com.easyrecruit.interview.infra.Entity.Question;
+import com.easyrecruit.interview.infra.payload.QuestionWithAnswersDto;
+import com.easyrecruit.interview.infra.payload.QuestionWithResponsesDTO;
+import com.easyrecruit.interview.service.api.QuestionModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/questions")
+@RequestMapping("/questions")
 public class QuestionController {
 
     @Autowired
-    private QuestionService questionService;
+    private QuestionModule questionModule;
 
     /**
      * Ajouter une nouvelle question avec ses réponses.
@@ -41,10 +42,10 @@ public class QuestionController {
         question.setTopic(questionWithAnswersDto.getTopic());
 
         // Récupérer les réponses associées
-        List<Reponse> reponses = questionWithAnswersDto.getReponses();
+        List<ReponseEntity> reponses = questionWithAnswersDto.getReponses();
 
         // Ajouter la question et ses réponses
-        questionService.addQuestionWithAnswers(question, reponses);
+        questionModule.addQuestionWithAnswers(question, reponses);
 
         return ResponseEntity.ok(question);
     }
@@ -61,7 +62,7 @@ public class QuestionController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
-        questionService.deleteQuestion(id);
+        questionModule.deleteQuestion(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -72,7 +73,7 @@ public class QuestionController {
      */
     @GetMapping
     public List<Question> getAllQuestions() {
-        return questionService.getAllQuestions();
+        return questionModule.getAllQuestions();
     }
 
     @PostMapping("/bulk")
@@ -92,10 +93,10 @@ public class QuestionController {
                 question.setTopic(entry.getKey());  // définir le sujet en fonction de l'entrée du Map
 
                 // Récupérer les réponses associées à cette question
-                List<Reponse> reponses = questionWithAnswersDto.getReponses();
+                List<ReponseEntity> reponses = questionWithAnswersDto.getReponses();
 
                 // Ajouter la question et ses réponses dans la base de données
-                questionService.addQuestionWithAnswers(question, reponses);
+                questionModule.addQuestionWithAnswers(question, reponses);
             }
         }
 
@@ -107,10 +108,10 @@ public class QuestionController {
 
     @GetMapping("/questions-with-responses")
     public List<QuestionWithResponsesDTO> getQuestionsWithResponses() {
-        return questionService.getQuestionsWithResponses();
+        return questionModule.getQuestionsWithResponses();
     }
     @GetMapping("/grouped")
-    public String getGroupedQuestions() {
-        return questionService.getGroupedQuestions();
+    public String getGroupedQuestionsWithIdByTopic() {
+        return questionModule.getGroupedQuestionsWithIdByTopic();
     }
 }

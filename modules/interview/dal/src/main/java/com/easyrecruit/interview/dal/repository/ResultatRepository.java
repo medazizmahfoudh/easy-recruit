@@ -1,17 +1,18 @@
 package com.easyrecruit.interview.dal.repository;
 
-import com.easyrecruit.interview.dal.entity.ReponseUtilisateur;
-import com.easyrecruit.interview.dal.entity.Resultat;
-import com.easyrecruit.management.infra.model.entity.Candidate;
+import com.easyrecruit.interview.dal.entity.ResultatEntity;
+import com.easyrecruit.management.dal.entity.CandidateEntity;  // Assurez-vous d'importer CandidateEntity
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface ResultatRepository extends JpaRepository<Resultat, Long> {
-    // Méthode pour trouver un résultat par l'ID du candidat
-    List<Resultat> findByCandidateId(Long candidateId);
-    Optional<Resultat> findByCandidateAndTopic(Candidate candidate, String topic);
+@Repository
+public interface ResultatRepository extends JpaRepository<ResultatEntity, Long> {
+    // Recherche par candidat, en utilisant l'entité CandidateEntity
+    List<ResultatEntity> findByCandidateId(Long candidate);
 
-
+    // Recherche par candidat et sujet
+    Optional<ResultatEntity> findByCandidateAndTopic(CandidateEntity candidate, String topic);
 }

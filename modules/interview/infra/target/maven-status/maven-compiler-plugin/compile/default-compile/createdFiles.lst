@@ -1,1 +1,10 @@
-com\easyrecruit\App.class
+com\easyrecruit\interview\infra\payload\QuestionWithAnswersDto.class
+com\easyrecruit\interview\infra\payload\MultipleQuestionDto.class
+com\easyrecruit\interview\infra\Entity\ReponseUtilisateur.class
+com\easyrecruit\interview\infra\Entity\Question.class
+com\easyrecruit\interview\infra\Entity\Reponse.class
+com\easyrecruit\interview\infra\payload\ResponseInput.class
+com\easyrecruit\interview\infra\payload\ReponseUtilisateurRequest.class
+com\easyrecruit\interview\infra\payload\SubmitAnswersRequest.class
+com\easyrecruit\interview\infra\payload\QuestionWithResponsesDTO.class
+com\easyrecruit\interview\infra\payload\SubmissionResponse.class

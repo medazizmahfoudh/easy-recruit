@@ -10,4 +10,6 @@ public interface CandidateConverter {
     CandidateConverter INSTANCE = Mappers.getMapper(CandidateConverter.class);
     CandidateEntity toEntity(Candidate Candidate);
     Candidate fromEntity(CandidateEntity CandidateEntity);
+    Candidate toModel(CandidateEntity candidateEntity);
+
 }

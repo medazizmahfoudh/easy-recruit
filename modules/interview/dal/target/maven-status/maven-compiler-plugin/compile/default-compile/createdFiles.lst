@@ -1,1 +1,7 @@
-com\easyrecruit\App.class
+com\easyrecruit\interview\dal\entity\ReponseEntity.class
+com\easyrecruit\interview\dal\repository\ReponseRepository.class
+com\easyrecruit\interview\dal\entity\ReponseUtilisateurEntity.class
+com\easyrecruit\interview\dal\repository\ResultatRepository.class
+com\easyrecruit\interview\dal\repository\ResponseUtilisateurRepository.class
+com\easyrecruit\interview\dal\entity\QuestionEntity.class
+com\easyrecruit\interview\dal\repository\QuestionRepository.class

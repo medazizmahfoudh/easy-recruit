@@ -1,8 +1,9 @@
-package com.easyrecruit.interview.infra;
+package com.easyrecruit.interview.infra.payload;
 
 import java.util.List;
 
 public class QuestionWithResponsesDTO {
+
     private String topic;
     private String question;
     private List<String> responses;

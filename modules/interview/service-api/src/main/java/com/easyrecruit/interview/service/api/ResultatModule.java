@@ -6,19 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 
-public class ResultatService {
-    private final ResultatRepository resultatRepository;
+public interface ResultatModule {
+    List<ResultatEntity> getResultsByCandidate(Long candidateId);
 
-
-    @Autowired
-    public ResultatService(ResultatRepository resultatRepository) {
-        this.resultatRepository = resultatRepository;
-    }
-
-    // Méthode pour récupérer tous les résultats d'un candidat donné
-    public List<ResultatEntity> getResultsByCandidate(Long candidateId) {
-        return resultatRepository.findByCandidateId(candidateId);
-    }
 }

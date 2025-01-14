@@ -1,4 +1,4 @@
-package com.easyrecruit.interview.infra;
+package com.easyrecruit.interview.infra.payload;
 
 import lombok.Getter;
 import lombok.Setter;

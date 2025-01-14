@@ -14,7 +14,10 @@ import java.util.List;
 @Setter
 
 @Entity
-public class Question {
+@Table(
+        name = "Question"
+)
+public class QuestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,23 +26,23 @@ public class Question {
     private String correctAnswer;
     private String topic; // Nouvel attribut pour le sujet de la question
 
-    public Question() {}
+    public QuestionEntity() {}
 
-    public Question(Long id) {
+    public QuestionEntity(Long id) {
         this.id = id;
     }
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY)
     @JsonManagedReference
-    private List<Reponse> responses;
+    private List<ReponseEntity> responses;
 
     @OneToMany(mappedBy = "question")
-    private List<ReponseUtilisateur> ListResponses;
+    private List<ReponseUtilisateurEntity> ListResponses;
     // Getter et Setter
-    public List<Reponse> getResponses() {
+    public List<ReponseEntity> getResponses() {
         return responses;
     }
 
-    public void setResponses(List<Reponse> responses) {
+    public void setResponses(List<ReponseEntity> responses) {
         this.responses = responses;
     }
     // Getters et setters

@@ -2,12 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.easyrecruit</groupId>
-        <artifactId>interview</artifactId>
-        <version>1.0</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
+    <groupId>com.easyrecruit</groupId>
     <artifactId>easyrecruit-interview-ws-rest</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>easyrecruit-interview-ws-rest</name>
@@ -42,6 +44,8 @@
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
+
+
 
     </dependencies>
 </project>

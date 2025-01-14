@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
-public class Reponse {
+@Table(
+        name = "Reponse"
+)
+public class ReponseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,29 +20,29 @@ public class Reponse {
     @ManyToOne
     @JoinColumn(name = "question_id")
     @JsonBackReference
-    private Question question;  // Cette propriété doit exister pour la relation bidirectionnelle
+    private QuestionEntity question;  // Cette propriété doit exister pour la relation bidirectionnelle
 
     // Constructeur par défaut
-    public Reponse() {
+    public ReponseEntity() {
     }
 
     // Constructeur avec id et texte de la réponse
-    public Reponse(Long id, String reponseText) {
+    public ReponseEntity(Long id, String reponseText) {
         this.id = id;
         this.reponseText = reponseText;
     }
 
     // Constructeur avec uniquement le texte de la réponse
-    public Reponse(String reponseText) {
+    public ReponseEntity(String reponseText) {
         this.reponseText = reponseText;
     }
 
     // Getter et Setter pour la propriété `question`
-    public Question getQuestion() {
+    public QuestionEntity getQuestion() {
         return question;
     }
 
-    public void setQuestion(Question question) {
+    public void setQuestion(QuestionEntity question) {
         this.question = question;
     }
 

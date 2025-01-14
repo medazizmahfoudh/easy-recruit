@@ -165,8 +165,12 @@ public class CandidateModuleImpl implements CandidateModule {
         return new DeleteResponse(OperationStatus.SUCCESS, "Resource has been deleted.");
     }
 
-    public CandidateEntity getCandidateById(Long id) {
-        Optional<CandidateEntity> candidate = repository.findById(id);
-        return candidate.orElseThrow(() -> new RuntimeException("Candidate not found with id " + id));  // Si non trouvé, lève une exception
+    @Override
+    public Candidate getCandidateById(Long id) throws CRUDOperationException {
+        Optional<CandidateEntity> candidateEntity = repository.findById(id);
+        if (candidateEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Candidate not found for the given ID: " + id);
+        }
+        return CandidateConverter.INSTANCE.fromEntity(candidateEntity.get());
     }
 }

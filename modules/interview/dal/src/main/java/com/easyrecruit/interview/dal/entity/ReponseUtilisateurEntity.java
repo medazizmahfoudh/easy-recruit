@@ -3,11 +3,18 @@ package com.easyrecruit.interview.dal.entity;
 import com.easyrecruit.management.dal.entity.CandidateEntity;
 import com.easyrecruit.management.infra.model.entity.Candidate;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
-public class ReponseUtilisateur {
+
+@Table(
+        name = "ReponseUtilisateur"
+)
+public class ReponseUtilisateurEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,45 +23,14 @@ public class ReponseUtilisateur {
     private CandidateEntity candidat;
 
     @ManyToOne
-    private Question question;
+    private QuestionEntity question;
 
     @ManyToOne
-    private Reponse reponse;
+    private ReponseEntity reponse;
 
     private boolean correct;
 
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 
 
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
-
-    public Reponse getReponse() {
-        return reponse;
-    }
-
-    public void setReponse(Reponse reponse) {
-        this.reponse = reponse;
-    }
-
-    public boolean isCorrect() {
-        return correct;
-    }
-
-    public void setCorrect(boolean correct) {
-        this.correct = correct;
-    }
 }

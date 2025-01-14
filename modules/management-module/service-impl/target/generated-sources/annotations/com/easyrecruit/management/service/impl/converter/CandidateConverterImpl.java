@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-11T19:29:50+0100",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
+    date = "2025-01-13T15:47:11+0100",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
 public class CandidateConverterImpl implements CandidateConverter {
 
@@ -45,6 +45,25 @@ public class CandidateConverterImpl implements CandidateConverter {
         candidate.setFirstname( CandidateEntity.getFirstname() );
         candidate.setLastname( CandidateEntity.getLastname() );
         candidate.setEmail( CandidateEntity.getEmail() );
+
+        return candidate;
+    }
+
+    @Override
+    public Candidate toModel(CandidateEntity candidateEntity) {
+        if ( candidateEntity == null ) {
+            return null;
+        }
+
+        Candidate candidate = new Candidate();
+
+        if ( candidateEntity.getId() != null ) {
+            candidate.setId( String.valueOf( candidateEntity.getId() ) );
+        }
+        candidate.setUuid( candidateEntity.getUuid() );
+        candidate.setFirstname( candidateEntity.getFirstname() );
+        candidate.setLastname( candidateEntity.getLastname() );
+        candidate.setEmail( candidateEntity.getEmail() );
 
         return candidate;
     }

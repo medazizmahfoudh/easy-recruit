@@ -1,4 +1,4 @@
-package com.easyrecruit.interview.infra;
+package com.easyrecruit.interview.infra.payload;
 
 public class ReponseUtilisateurRequest {
     private int candidateId;
