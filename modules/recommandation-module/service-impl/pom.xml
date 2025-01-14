@@ -8,13 +8,20 @@
   <dependencies>
     <dependency>
       <groupId>com.easyrecruit</groupId>
-      <artifactId>easyrecruit-recommandation-dal</artifactId>
+      <artifactId>easyrecruit-recommndation-infra</artifactId>
       <version>1.0.0</version>
     </dependency>
+
     <dependency>
       <groupId>com.easyrecruit</groupId>
       <artifactId>easyrecruit-recommandation-service-api</artifactId>
       <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.easyrecruit</groupId>
+      <artifactId>easyrecruit-recommandation-dal</artifactId>
+      <version>1.0.0</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>

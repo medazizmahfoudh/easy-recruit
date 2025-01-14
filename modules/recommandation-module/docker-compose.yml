@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres
+    container_name: easy-recruit-pg
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: easy-recruit-pg-db
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - pg-volume:/var/lib/pgsql/data
+
+  mongodb:
+    image: mongo
+    container_name: easy-recruit-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    restart: always
+    volumes:
+      - mongo-volume:/data/db
+
+volumes:
+  mongo-volume: {}
+  pg-volume: {}

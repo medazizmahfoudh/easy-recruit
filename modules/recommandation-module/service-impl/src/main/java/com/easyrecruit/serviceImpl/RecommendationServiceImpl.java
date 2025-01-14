@@ -6,10 +6,10 @@ import com.easyrecruit.management.infra.model.entity.Candidate;
 import com.easyrecruit.management.infra.model.entity.Position;
 import com.easyrecruit.management.infra.model.entity.Skill;
 import com.easyrecruit.management.service.api.ApplicationModule;
-import com.easyrecruit.payloads.TrainingResponse;
 import com.easyrecruit.serviceApi.RecommendationServiceAPI;
+import com.easyrecruit.serviceApi.TrainingServiceAPI;
 import com.eniso.entities.ApplicationReport;
-import com.eniso.repositories.TrainingSuggestionRepository;
+import com.eniso.repositories.ApplicationReportRepository;
 import jakarta.inject.Singleton;
 
 import java.util.*;
@@ -17,10 +17,10 @@ import java.util.*;
 @Singleton
 public class RecommendationServiceImpl implements RecommendationServiceAPI {
 
-    private final TrainingSuggestionRepository repository;
+    private final ApplicationReportRepository repository;
     private final ApplicationModule applicationModule;
 
-    public RecommendationServiceImpl(TrainingSuggestionRepository repository, ApplicationModule applicationModule) {
+    public RecommendationServiceImpl(ApplicationReportRepository repository, ApplicationModule applicationModule, TrainingServiceAPI trainingServiceAPI) {
         this.repository = repository;
         this.applicationModule = applicationModule;
     }
@@ -33,15 +33,7 @@ public class RecommendationServiceImpl implements RecommendationServiceAPI {
         }
     }
 
-    @Override
-    public List<TrainingResponse> getAllSuggestions() {
-        return null;
-    }
 
-    @Override
-    public TrainingResponse getSuggestionByUUID(String uuid) {
-        return null;
-    }
 
     @Override
     public void deleteAll() {
@@ -101,18 +93,6 @@ public class RecommendationServiceImpl implements RecommendationServiceAPI {
         return result;
     }
 
-    private void suggestTrainings(ApplicationReport report){
-        for (Skill missingSkill: report.getMissingSkills()){
-            suggestBasicTraining(missingSkill);
-        }
-//        for (Map.Entry entry :  report.getSkillMap().entrySet()){
-//
-//        }
-    }
-
-    private void suggestBasicTraining(Skill missingSkill) {
-
-    }
 
 
 }

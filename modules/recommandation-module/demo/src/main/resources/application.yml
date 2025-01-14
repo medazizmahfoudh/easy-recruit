@@ -1,12 +1,14 @@
 #Sat Jan 04 16:57:07 UTC 2025
 datasources:
-  default:
-    db-type: postgres
-    dialect: POSTGRES
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/mydatabase
-    username: postgres
-    password: tbs
+    postgres:
+      db-type: postgres
+      dialect: POSTGRES
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5432/easy-recruit-pg-db
+      username: postgres
+      password: pass
+#    mongodb:
+#      uri: mongodb://localhost:27017/
 
 jpa:
   default:
@@ -14,8 +16,24 @@ jpa:
       hibernate:
         hbm2ddl:
           auto: update
+#mongodb:
+#  #  Set username/password as env vars
+#  uri: mongodb://easy-recruit-mongodb:pass@localhost:27017/mmo_server?authSource=admin
+#  options:
+#    maxConnectionIdleTime: 15000
+#    readConcern: majority
+#  #  For reactive MongoDB driver:
+#  cluster:
+#    maxWaitQueueSize: 5
+#  connectionPool:
+#    maxSize: 20
 
 micronaut:
   application:
     name: demo
+  router:
+    static-resources:
+      swagger-ui:
+        path: META-INF/swagger/views/swagger-ui
+        mapping: /swagger-ui/**
 

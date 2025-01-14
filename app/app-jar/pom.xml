@@ -36,6 +36,13 @@
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-dmn-service-impl</artifactId><version>1.0.0</version></dependency>
 		<dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><scope>runtime</scope></dependency>
 		<dependency><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><optional>true</optional></dependency>
+
+		<dependency>
+			<groupId>com.easyrecruit</groupId>
+			<artifactId>easyrecruit-recommandation-ws-rest</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 </project>
