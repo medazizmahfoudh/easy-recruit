@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Position {
 
     @JsonIgnore
-    private Long id;
+    private String id;
     private String uuid = UUID.randomUUID().toString();
     private String name;
     private String description;

@@ -9,7 +9,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T21:30:24+0100",
+    date = "2025-01-14T21:44:34+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class PositionConverterImpl implements PositionConverter {
@@ -22,9 +22,7 @@ public class PositionConverterImpl implements PositionConverter {
 
         PositionDocument positionDocument = new PositionDocument();
 
-        if ( Position.getId() != null ) {
-            positionDocument.setId( String.valueOf( Position.getId() ) );
-        }
+        positionDocument.setId( Position.getId() );
         positionDocument.setUuid( Position.getUuid() );
         positionDocument.setName( Position.getName() );
         positionDocument.setDescription( Position.getDescription() );
@@ -45,9 +43,7 @@ public class PositionConverterImpl implements PositionConverter {
 
         Position position = new Position();
 
-        if ( PositionDocument.getId() != null ) {
-            position.setId( Long.parseLong( PositionDocument.getId() ) );
-        }
+        position.setId( PositionDocument.getId() );
         position.setUuid( PositionDocument.getUuid() );
         position.setName( PositionDocument.getName() );
         position.setDescription( PositionDocument.getDescription() );
