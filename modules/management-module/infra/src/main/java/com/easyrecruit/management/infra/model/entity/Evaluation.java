@@ -19,6 +19,7 @@ public class Evaluation {
     private RecruitmentStep step = RecruitmentStep.PRELIMINARY;
     private Double score = 0.00 ;
     private String decision;
+    private String feedback;
     private EvaluationStatus status = EvaluationStatus.IDLE;
 
 }

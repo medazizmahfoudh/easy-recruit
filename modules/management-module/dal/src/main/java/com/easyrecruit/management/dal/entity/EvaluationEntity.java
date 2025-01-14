@@ -30,6 +30,7 @@ public class EvaluationEntity {
     private String applicationUuid;
     private RecruitmentStep step;
     private Double score;
+    private String feedback;
     private String decision;
     private EvaluationStatus status = EvaluationStatus.IDLE;
 }

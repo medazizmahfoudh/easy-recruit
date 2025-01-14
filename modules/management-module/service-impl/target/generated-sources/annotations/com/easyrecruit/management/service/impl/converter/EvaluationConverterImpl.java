@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T13:59:09+0100",
+    date = "2025-01-14T15:51:14+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class EvaluationConverterImpl implements EvaluationConverter {
@@ -27,6 +27,7 @@ public class EvaluationConverterImpl implements EvaluationConverter {
         evaluationEntity.setApplicationUuid( evaluation.getApplicationUuid() );
         evaluationEntity.setStep( evaluation.getStep() );
         evaluationEntity.setScore( evaluation.getScore() );
+        evaluationEntity.setFeedback( evaluation.getFeedback() );
         evaluationEntity.setDecision( evaluation.getDecision() );
         evaluationEntity.setStatus( evaluation.getStatus() );
 
@@ -49,6 +50,7 @@ public class EvaluationConverterImpl implements EvaluationConverter {
         evaluation.setStep( evaluationEntity.getStep() );
         evaluation.setScore( evaluationEntity.getScore() );
         evaluation.setDecision( evaluationEntity.getDecision() );
+        evaluation.setFeedback( evaluationEntity.getFeedback() );
         evaluation.setStatus( evaluationEntity.getStatus() );
 
         return evaluation;
