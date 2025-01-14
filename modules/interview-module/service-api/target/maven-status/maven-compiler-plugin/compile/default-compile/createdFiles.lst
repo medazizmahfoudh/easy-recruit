@@ -1,2 +1,3 @@
-com\easyrecruit\interview\service\api\ReponseUtilisateurService.class
-com\easyrecruit\interview\service\api\QuestionService.class
+com/easyrecruit/interview/service/api/QuestionModule.class
+com/easyrecruit/interview/service/api/ResultModule.class
+com/easyrecruit/interview/service/api/ResponseUserModule.class

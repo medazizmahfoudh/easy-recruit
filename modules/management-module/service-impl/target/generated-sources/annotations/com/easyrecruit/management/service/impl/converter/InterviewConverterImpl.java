@@ -14,8 +14,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T19:27:06+0100",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
+    date = "2025-01-14T21:30:24+0100",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class InterviewConverterImpl implements InterviewConverter {
 
@@ -28,9 +28,7 @@ public class InterviewConverterImpl implements InterviewConverter {
         InterviewEntity interviewEntity = new InterviewEntity();
 
         interviewEntity.setPositionUuid( interviewPositionUuid( Interview ) );
-        if ( Interview.getId() != null ) {
-            interviewEntity.setId( Long.parseLong( Interview.getId() ) );
-        }
+        interviewEntity.setId( Interview.getId() );
         if ( Interview.getUuid() != null ) {
             interviewEntity.setUuid( UUID.fromString( Interview.getUuid() ) );
         }
@@ -52,9 +50,7 @@ public class InterviewConverterImpl implements InterviewConverter {
         Interview interview = new Interview();
 
         interview.setPosition( interviewEntityToPosition( InterviewEntity ) );
-        if ( InterviewEntity.getId() != null ) {
-            interview.setId( String.valueOf( InterviewEntity.getId() ) );
-        }
+        interview.setId( InterviewEntity.getId() );
         if ( InterviewEntity.getUuid() != null ) {
             interview.setUuid( InterviewEntity.getUuid().toString() );
         }
@@ -82,9 +78,7 @@ public class InterviewConverterImpl implements InterviewConverter {
 
         RecruiterEntity recruiterEntity = new RecruiterEntity();
 
-        if ( recruiter.getId() != null ) {
-            recruiterEntity.setId( Long.parseLong( recruiter.getId() ) );
-        }
+        recruiterEntity.setId( recruiter.getId() );
         if ( recruiter.getUuid() != null ) {
             recruiterEntity.setUuid( UUID.fromString( recruiter.getUuid() ) );
         }
@@ -103,9 +97,7 @@ public class InterviewConverterImpl implements InterviewConverter {
 
         CandidateEntity candidateEntity = new CandidateEntity();
 
-        if ( candidate.getId() != null ) {
-            candidateEntity.setId( Long.parseLong( candidate.getId() ) );
-        }
+        candidateEntity.setId( candidate.getId() );
         if ( candidate.getUuid() != null ) {
             candidateEntity.setUuid( UUID.fromString( candidate.getUuid() ) );
         }
@@ -177,9 +169,7 @@ public class InterviewConverterImpl implements InterviewConverter {
 
         Recruiter recruiter = new Recruiter();
 
-        if ( recruiterEntity.getId() != null ) {
-            recruiter.setId( String.valueOf( recruiterEntity.getId() ) );
-        }
+        recruiter.setId( recruiterEntity.getId() );
         if ( recruiterEntity.getUuid() != null ) {
             recruiter.setUuid( recruiterEntity.getUuid().toString() );
         }
@@ -198,9 +188,7 @@ public class InterviewConverterImpl implements InterviewConverter {
 
         Candidate candidate = new Candidate();
 
-        if ( candidateEntity.getId() != null ) {
-            candidate.setId( String.valueOf( candidateEntity.getId() ) );
-        }
+        candidate.setId( candidateEntity.getId() );
         if ( candidateEntity.getUuid() != null ) {
             candidate.setUuid( candidateEntity.getUuid().toString() );
         }

@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Accessors(chain = true)
@@ -17,7 +16,7 @@ import java.util.UUID;
 public class Position {
 
     @JsonIgnore
-    private String id;
+    private Long id;
     private String uuid = UUID.randomUUID().toString();
     private String name;
     private String description;

@@ -15,5 +15,6 @@
         <module>evaluation-module</module>
         <module>management-module</module>
         <module>dmn-module</module>
+        <module>interview-module</module>
     </modules>
 </project>

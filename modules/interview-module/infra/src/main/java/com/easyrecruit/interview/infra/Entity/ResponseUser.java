@@ -1,8 +1,6 @@
 package com.easyrecruit.interview.infra.Entity;
 
-import com.easyrecruit.interview.dal.entity.QuestionEntity;
-import com.easyrecruit.interview.dal.entity.ResponseEntity;
-import com.easyrecruit.management.dal.entity.CandidateEntity;
+import com.easyrecruit.management.infra.model.entity.Candidate;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -10,11 +8,11 @@ import lombok.Data;
 public class ResponseUser {
     private Long id;
     @ManyToOne
-    private CandidateEntity candidate;
+    private Candidate candidate;
     @ManyToOne
-    private QuestionEntity question;
+    private Question question;
     @ManyToOne
-    private ResponseEntity response;
+    private Response response;
     private boolean correct;
 
 

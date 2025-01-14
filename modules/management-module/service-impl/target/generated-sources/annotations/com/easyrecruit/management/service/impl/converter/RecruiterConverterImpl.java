@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T19:12:37+0100",
+    date = "2025-01-14T21:30:24+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class RecruiterConverterImpl implements RecruiterConverter {
@@ -20,9 +20,7 @@ public class RecruiterConverterImpl implements RecruiterConverter {
 
         RecruiterEntity recruiterEntity = new RecruiterEntity();
 
-        if ( Recruiter.getId() != null ) {
-            recruiterEntity.setId( Long.parseLong( Recruiter.getId() ) );
-        }
+        recruiterEntity.setId( Recruiter.getId() );
         if ( Recruiter.getUuid() != null ) {
             recruiterEntity.setUuid( UUID.fromString( Recruiter.getUuid() ) );
         }
@@ -42,9 +40,7 @@ public class RecruiterConverterImpl implements RecruiterConverter {
 
         Recruiter recruiter = new Recruiter();
 
-        if ( RecruiterEntity.getId() != null ) {
-            recruiter.setId( String.valueOf( RecruiterEntity.getId() ) );
-        }
+        recruiter.setId( RecruiterEntity.getId() );
         if ( RecruiterEntity.getUuid() != null ) {
             recruiter.setUuid( RecruiterEntity.getUuid().toString() );
         }

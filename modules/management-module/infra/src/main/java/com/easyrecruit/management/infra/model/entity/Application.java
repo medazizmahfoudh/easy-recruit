@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Application {
 
     @JsonIgnore
-    private String id;
+    private Long id;
     private String uuid = UUID.randomUUID().toString();
     private ApplicationStatus status = ApplicationStatus.NEW;
     private Candidate candidate;

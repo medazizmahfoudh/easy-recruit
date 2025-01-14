@@ -7,8 +7,8 @@ import org.mapstruct.factory.Mappers;
 
 
 @Mapper
-public interface ReponseConverter {
-    ReponseConverter INSTANCE = Mappers.getMapper(ReponseConverter.class);
+public interface ResponseConverter {
+    ResponseConverter INSTANCE = Mappers.getMapper(ResponseConverter.class);
     ResponseEntity toEntity (Response response);
     Response fromEntity (ResponseEntity responseEntity);
 }

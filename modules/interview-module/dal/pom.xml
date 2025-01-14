@@ -34,31 +34,13 @@
         </dependency>
         <dependency>
             <groupId>com.easyrecruit</groupId>
-            <artifactId>easyrecruit-management-infra</artifactId>
+            <artifactId>easyrecruit-interview-infra</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.easyrecruit</groupId>
             <artifactId>easyrecruit-management-dal</artifactId>
             <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.easyrecruit</groupId>
-            <artifactId>easyrecruit-interview-infra</artifactId>
-            <version>3.2.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.easyrecruit</groupId>
-            <artifactId>easyrecruit-interview-infra</artifactId>
-            <version>3.2.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.easyrecruit</groupId>
-            <artifactId>easyrecruit-interview-infra</artifactId>
-            <version>3.2.2</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

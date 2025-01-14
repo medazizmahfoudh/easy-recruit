@@ -7,8 +7,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T19:27:06+0100",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
+    date = "2025-01-14T21:30:24+0100",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class CandidateConverterImpl implements CandidateConverter {
 
@@ -20,9 +20,7 @@ public class CandidateConverterImpl implements CandidateConverter {
 
         CandidateEntity candidateEntity = new CandidateEntity();
 
-        if ( Candidate.getId() != null ) {
-            candidateEntity.setId( Long.parseLong( Candidate.getId() ) );
-        }
+        candidateEntity.setId( Candidate.getId() );
         if ( Candidate.getUuid() != null ) {
             candidateEntity.setUuid( UUID.fromString( Candidate.getUuid() ) );
         }
@@ -41,9 +39,7 @@ public class CandidateConverterImpl implements CandidateConverter {
 
         Candidate candidate = new Candidate();
 
-        if ( CandidateEntity.getId() != null ) {
-            candidate.setId( String.valueOf( CandidateEntity.getId() ) );
-        }
+        candidate.setId( CandidateEntity.getId() );
         if ( CandidateEntity.getUuid() != null ) {
             candidate.setUuid( CandidateEntity.getUuid().toString() );
         }

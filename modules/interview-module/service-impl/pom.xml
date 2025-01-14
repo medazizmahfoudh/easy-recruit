@@ -8,34 +8,20 @@
 
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <groupId>com.easyrecruit</groupId>
-<artifactId>easyrecruit-interview-service-impl</artifactId>
-<version>1.0.0</version>
-
-    <name>easyrecruit-interview-service-impl</name>
-    <url>http://maven.apache.org</url>
-
+    <artifactId>easyrecruit-interview-service-impl</artifactId>
+    <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
-
     </properties>
-
     <dependencies>
         <dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-interview-service-api</artifactId><version>1.0.0</version></dependency>
         <dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-interview-dal</artifactId><version>1.0.0</version><scope>compile</scope></dependency>
-
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>1.6.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.easyrecruit</groupId>
-            <artifactId>easyrecruit-interview-dal</artifactId>
-            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

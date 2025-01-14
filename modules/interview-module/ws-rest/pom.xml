@@ -10,23 +10,15 @@
     <groupId>com.easyrecruit</groupId>
     <artifactId>easyrecruit-interview-ws-rest</artifactId>
     <version>1.0.0</version>
-    <packaging>jar</packaging>
-
-    <name>easyrecruit-interview-ws-rest</name>
-    <url>http://maven.apache.org</url>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.easyrecruit</groupId>
             <artifactId>easyrecruit-interview-service-api</artifactId>
             <version>1.0.0</version>
-
         </dependency>
-
         <dependency>
             <groupId>com.easyrecruit</groupId>
             <artifactId>easyrecruit-interview-infra</artifactId>
@@ -44,8 +36,5 @@
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
-
-
-
     </dependencies>
 </project>

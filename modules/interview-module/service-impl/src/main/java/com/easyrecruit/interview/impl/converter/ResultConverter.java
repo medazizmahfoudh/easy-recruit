@@ -7,8 +7,8 @@ import org.mapstruct.factory.Mappers;
 
 
 @Mapper
-public interface ResultatConverter {
-   ResultatConverter INSTANCE = Mappers.getMapper(ResultatConverter.class);
+public interface ResultConverter {
+   ResultConverter INSTANCE = Mappers.getMapper(ResultConverter.class);
     ResultEntity toEntity (Result result);
     Result fromEntity (ResultEntity resultEntity);
 }

@@ -2,6 +2,7 @@ package com.easyrecruit.interview.impl.service;
 
 import com.easyrecruit.interview.dal.entity.ResponseUserEntity;
 import com.easyrecruit.interview.dal.repository.ResponseUserRepository;
+import com.easyrecruit.interview.impl.converter.ResponseUserConverter;
 import com.easyrecruit.interview.infra.Entity.ResponseUser;
 import com.easyrecruit.interview.service.api.ResponseUserModule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +20,16 @@ public class ResponseUserImpl implements ResponseUserModule {
         this.responseUserRepository = responseUserRepository;
     }
     @Override
-    public void saveUserAnswers(List<ResponseUserEntity> responsesUser) {
-        responseUserRepository.saveAll(responsesUser);
+    public void saveUserAnswers(List<ResponseUser> responsesUser) {
+        List<ResponseUserEntity> responseUserEntities = responsesUser.stream()
+                .map(ResponseUserConverter.INSTANCE::toEntity)
+                .toList();
+        responseUserRepository.saveAll(responseUserEntities);
     }
     @Override
-    public List<ResponseUser> getUserAnswersByCandidatId(Long candidateId) {
-        return responseUserRepository.findByCandidatId(candidateId).stream()
-                .map(responseEntity -> {
-                    ResponseUser responseUser = new ResponseUser();
-                    responseUser.setResponse(responseEntity.getResponse());
-                    responseUser.setCandidate(responseEntity.getCandidate());
-                    responseUser.setQuestion(responseEntity.getQuestion());
-                    responseUser.setCorrect(responseEntity.isCorrect());
-                    return responseUser;
-                })
+    public List<ResponseUser> getUserAnswersByCandidateId(Long candidateId) {
+        return responseUserRepository.findByCandidateId(candidateId).stream()
+                .map(ResponseUserConverter.INSTANCE::fromEntity)
                 .toList();
     }
 

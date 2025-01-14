@@ -11,8 +11,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T19:27:06+0100",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
+    date = "2025-01-14T21:30:24+0100",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class ApplicationConverterImpl implements ApplicationConverter {
 
@@ -26,9 +26,7 @@ public class ApplicationConverterImpl implements ApplicationConverter {
 
         applicationEntity.setCvUuid( applicationCvUuid( application ) );
         applicationEntity.setPositionUuid( applicationPositionUuid( application ) );
-        if ( application.getId() != null ) {
-            applicationEntity.setId( Long.parseLong( application.getId() ) );
-        }
+        applicationEntity.setId( application.getId() );
         if ( application.getUuid() != null ) {
             applicationEntity.setUuid( UUID.fromString( application.getUuid() ) );
         }
@@ -47,9 +45,7 @@ public class ApplicationConverterImpl implements ApplicationConverter {
         Application application = new Application();
 
         application.setPosition( applicationEntityToPosition( applicationEntity ) );
-        if ( applicationEntity.getId() != null ) {
-            application.setId( String.valueOf( applicationEntity.getId() ) );
-        }
+        application.setId( applicationEntity.getId() );
         if ( applicationEntity.getUuid() != null ) {
             application.setUuid( applicationEntity.getUuid().toString() );
         }
@@ -82,9 +78,7 @@ public class ApplicationConverterImpl implements ApplicationConverter {
 
         CandidateEntity candidateEntity = new CandidateEntity();
 
-        if ( candidate.getId() != null ) {
-            candidateEntity.setId( Long.parseLong( candidate.getId() ) );
-        }
+        candidateEntity.setId( candidate.getId() );
         if ( candidate.getUuid() != null ) {
             candidateEntity.setUuid( UUID.fromString( candidate.getUuid() ) );
         }
@@ -114,9 +108,7 @@ public class ApplicationConverterImpl implements ApplicationConverter {
 
         Candidate candidate = new Candidate();
 
-        if ( candidateEntity.getId() != null ) {
-            candidate.setId( String.valueOf( candidateEntity.getId() ) );
-        }
+        candidate.setId( candidateEntity.getId() );
         if ( candidateEntity.getUuid() != null ) {
             candidate.setUuid( candidateEntity.getUuid().toString() );
         }

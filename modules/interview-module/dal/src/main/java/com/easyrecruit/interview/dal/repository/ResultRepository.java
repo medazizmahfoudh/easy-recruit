@@ -1,7 +1,6 @@
 package com.easyrecruit.interview.dal.repository;
 
 import com.easyrecruit.interview.dal.entity.ResultEntity;
-import com.easyrecruit.management.dal.entity.CandidateEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +13,5 @@ public interface ResultRepository extends JpaRepository<ResultEntity, Long> {
     List<ResultEntity> findByCandidateId(Long candidate);
 
     // Recherche par candidat et sujet
-    Optional<ResultEntity> findByCandidateAndTopic(CandidateEntity candidate, String topic);
+    Optional<ResultEntity> findByCandidateIdAndTopic(Long candidateId, String topic);
 }

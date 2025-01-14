@@ -14,10 +14,10 @@ import java.util.Optional;
 public interface ResponseUserRepository extends JpaRepository<ResponseUserEntity, Long> {
 
 
-    List<ResponseUserEntity> findByCandidatId(Long candidatId);
-    Optional<ResponseUserEntity> findByQuestionAndReponse(QuestionEntity question, ResponseEntity reponse);
+    List<ResponseUserEntity> findByCandidateId(Long candidateId);
+    Optional<ResponseUserEntity> findByQuestionAndResponse(QuestionEntity question, ResponseEntity response);
     @Query("SELECT r FROM ResponseEntity r WHERE r.question = :question AND r.correct = true")
-    ResponseEntity findCorrectReponseByQuestion(@Param("question") QuestionEntity question);
+    ResponseEntity findCorrectResponseByQuestion(@Param("question") QuestionEntity question);
 
 
 }

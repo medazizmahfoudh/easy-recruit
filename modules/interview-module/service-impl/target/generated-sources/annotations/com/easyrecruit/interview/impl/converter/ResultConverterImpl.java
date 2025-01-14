@@ -4,14 +4,15 @@ import com.easyrecruit.interview.dal.entity.ResultEntity;
 import com.easyrecruit.interview.infra.Entity.Result;
 import com.easyrecruit.management.dal.entity.CandidateEntity;
 import com.easyrecruit.management.infra.model.entity.Candidate;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T10:28:07+0100",
+    date = "2025-01-14T21:30:38+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
-public class ResultatConverterImpl implements ResultatConverter {
+public class ResultConverterImpl implements ResultConverter {
 
     @Override
     public ResultEntity toEntity(Result result) {
@@ -25,6 +26,8 @@ public class ResultatConverterImpl implements ResultatConverter {
         resultEntity.setCandidate( candidateToCandidateEntity( result.getCandidate() ) );
         resultEntity.setScore( result.getScore() );
         resultEntity.setTopic( result.getTopic() );
+        resultEntity.setTotalQuestions( result.getTotalQuestions() );
+        resultEntity.setCorrectQuestions( result.getCorrectQuestions() );
 
         return resultEntity;
     }
@@ -41,6 +44,8 @@ public class ResultatConverterImpl implements ResultatConverter {
         result.setCandidate( candidateEntityToCandidate( resultEntity.getCandidate() ) );
         result.setScore( resultEntity.getScore() );
         result.setTopic( resultEntity.getTopic() );
+        result.setTotalQuestions( resultEntity.getTotalQuestions() );
+        result.setCorrectQuestions( resultEntity.getCorrectQuestions() );
 
         return result;
     }
@@ -52,10 +57,10 @@ public class ResultatConverterImpl implements ResultatConverter {
 
         CandidateEntity candidateEntity = new CandidateEntity();
 
-        if ( candidate.getId() != null ) {
-            candidateEntity.setId( Long.parseLong( candidate.getId() ) );
+        candidateEntity.setId( candidate.getId() );
+        if ( candidate.getUuid() != null ) {
+            candidateEntity.setUuid( UUID.fromString( candidate.getUuid() ) );
         }
-        candidateEntity.setUuid( candidate.getUuid() );
         candidateEntity.setFirstname( candidate.getFirstname() );
         candidateEntity.setLastname( candidate.getLastname() );
         candidateEntity.setEmail( candidate.getEmail() );
@@ -70,10 +75,10 @@ public class ResultatConverterImpl implements ResultatConverter {
 
         Candidate candidate = new Candidate();
 
-        if ( candidateEntity.getId() != null ) {
-            candidate.setId( String.valueOf( candidateEntity.getId() ) );
+        candidate.setId( candidateEntity.getId() );
+        if ( candidateEntity.getUuid() != null ) {
+            candidate.setUuid( candidateEntity.getUuid().toString() );
         }
-        candidate.setUuid( candidateEntity.getUuid() );
         candidate.setFirstname( candidateEntity.getFirstname() );
         candidate.setLastname( candidateEntity.getLastname() );
         candidate.setEmail( candidateEntity.getEmail() );

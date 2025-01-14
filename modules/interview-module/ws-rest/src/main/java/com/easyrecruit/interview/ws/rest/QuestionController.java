@@ -1,8 +1,8 @@
 package com.easyrecruit.interview.ws.rest;
 
 
-import com.easyrecruit.interview.dal.entity.ResponseEntity;
 import com.easyrecruit.interview.infra.Entity.Question;
+import com.easyrecruit.interview.infra.Entity.Response;
 import com.easyrecruit.interview.infra.payload.QuestionWithAnswersDto;
 import com.easyrecruit.interview.infra.payload.QuestionWithResponsesDTO;
 import com.easyrecruit.interview.service.api.QuestionModule;
@@ -27,7 +27,7 @@ public class QuestionController {
         question.setTopic(questionWithAnswersDto.getTopic());
 
         // Récupérer les réponses associées
-        List<ResponseEntity> reponses = questionWithAnswersDto.getResponses();
+        List<Response> reponses = questionWithAnswersDto.getResponses();
 
         // Ajouter la question et ses réponses
         questionModule.addQuestionWithAnswers(question, reponses);
@@ -63,7 +63,7 @@ public class QuestionController {
                 question.setTopic(entry.getKey());  // définir le sujet en fonction de l'entrée du Map
 
                 // Récupérer les réponses associées à cette question
-                List<ResponseEntity> reponses = questionWithAnswersDto.getResponses();
+                List<Response> reponses = questionWithAnswersDto.getResponses();
 
                 // Ajouter la question et ses réponses dans la base de données
                 questionModule.addQuestionWithAnswers(question, reponses);
