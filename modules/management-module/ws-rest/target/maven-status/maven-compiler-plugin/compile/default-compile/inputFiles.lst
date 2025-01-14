@@ -1,8 +1,8 @@
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/InterviewWS.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/ProcessWS.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/CvWS.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/PositionWS.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/CandidateWS.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/ApplicationWS.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/RecruiterWS.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/management-module/ws-rest/src/main/java/com/easyrecruit/management/ws/rest/EvaluationWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\ApplicationWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\ProcessWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\PositionWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\CandidateWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\InterviewWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\EvaluationWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\RecruiterWS.java
+C:\projects\easy-recruit\modules\management-module\ws-rest\src\main\java\com\easyrecruit\management\ws\rest\CvWS.java

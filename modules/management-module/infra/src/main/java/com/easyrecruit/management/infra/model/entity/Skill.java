@@ -15,5 +15,5 @@ import java.util.UUID;
 @Embeddable
 public class Skill {
     private String name;
-    private String level;
+    private Integer level;
 }
