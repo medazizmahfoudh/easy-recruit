@@ -11,6 +11,7 @@ import java.util.UUID;
 @Repository
 public interface CandidateRepository extends JpaRepository<CandidateEntity, Long> {
 
+    Optional<CandidateEntity> getCandidateEntityById(Long id);
     Optional<CandidateEntity> getCandidateEntityByUuid(UUID uuid);
     Optional<CandidateEntity> getCandidateEntityByEmail(String email);
     List<CandidateEntity> getCandidateEntityByFirstname(String firstname);

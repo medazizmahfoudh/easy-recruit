@@ -1,0 +1,4 @@
+com\easyrecruit\interview\impl\converter\ResponseUtilisateurConverter.class
+com\easyrecruit\interview\impl\converter\ReponseConverter.class
+com\easyrecruit\interview\impl\converter\QuestionConverter.class
+com\easyrecruit\interview\impl\converter\ResultatConverter.class

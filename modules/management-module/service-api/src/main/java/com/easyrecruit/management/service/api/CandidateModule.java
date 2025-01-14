@@ -8,6 +8,8 @@ import com.easyrecruit.management.service.api.exception.CRUDOperationException;
 import java.util.List;
 
 public interface CandidateModule {
+
+    Candidate getCandidateById(Long id) throws CRUDOperationException;
     Candidate createCandidate(CandidateCreateOrUpdateRequest request) throws CRUDOperationException;
     Candidate updateCandidate(CandidateCreateOrUpdateRequest request, String candidateUuid) throws CRUDOperationException;
     DeleteResponse deleteCandidate(Candidate candidate) throws CRUDOperationException;

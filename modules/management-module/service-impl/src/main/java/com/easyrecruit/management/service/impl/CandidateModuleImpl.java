@@ -28,6 +28,13 @@ public class CandidateModuleImpl implements CandidateModule {
 
 
     @Override
+    public Candidate getCandidateById(Long id) throws CRUDOperationException {
+         return CandidateConverter.INSTANCE.fromEntity(
+                 repository.getCandidateEntityById(id)
+                         .orElseThrow(() -> new CRUDOperationException(CRUDOperation.READ, "Candidate not found.")));
+    }
+
+    @Override
     public Candidate createCandidate(CandidateCreateOrUpdateRequest request) throws CRUDOperationException {
 
         if (repository.existsByEmail(request.email())) {
