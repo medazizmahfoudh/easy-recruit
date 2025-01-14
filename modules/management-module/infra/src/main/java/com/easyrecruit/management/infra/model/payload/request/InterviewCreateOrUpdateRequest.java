@@ -1,5 +1,8 @@
 package com.easyrecruit.management.infra.model.payload.request;
 
-public record InterviewCreateOrUpdateRequest(String date, String location, String positionUuid, String recruiterUuid, String candidateUuid) {
+
+import org.springframework.lang.NonNull;
+
+public record InterviewCreateOrUpdateRequest(@NonNull String date, @NonNull String location, @NonNull String positionUuid, @NonNull String recruiterUuid, @NonNull String candidateUuid) {
 
 }

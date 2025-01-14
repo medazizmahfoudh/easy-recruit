@@ -1,30 +1,37 @@
 package com.easyrecruit.core.ws.rest.model.entity;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-public class AppUserRole {
-  private Long id;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-  private String name;
 
-  public AppUserRole() {
+@RequiredArgsConstructor
+@Getter
+public enum AppUserRole {
 
-  }
+    RECRUITER(
+            Set.of(
+                Permission.RECRUITER_READ, Permission.RECRUITER_UPDATE, Permission.RECRUITER_CREATE, Permission.RECRUITER_DELETE
+            )
+    ),
+    ADMIN(
+            Set.of(
+            Permission.ADMIN_CREATE, Permission.ADMIN_READ, Permission.ADMIN_UPDATE, Permission.ADMIN_DELETE
+            )
+    );
 
-  public Long getId() {
-    return id;
-  }
+    private final Set<Permission> permissions;
 
-  public AppUserRole setId(Long id) {
-    this.id = id;
-    return this;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public AppUserRole setName(String name) {
-    this.name = name;
-    return this;
-  }
+    public List<SimpleGrantedAuthority> getAuthorities() {
+        var authorities = getPermissions()
+                .stream()
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                .collect(Collectors.toList());
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
+        return authorities;
+    }
 }

@@ -1,6 +1,7 @@
 package com.easyrecruit.core.service.impl.service;
 
 import com.easyrecruit.core.dal.entity.AppConfEntity;
+import com.easyrecruit.core.dal.entity.AppUserEntity;
 import com.easyrecruit.core.dal.repository.AppConfEntityRepository;
 import com.easyrecruit.core.service.impl.security.AppSecurityUtils;
 import com.easyrecruit.core.ws.rest.ann.Secret;
@@ -10,9 +11,16 @@ import net.thevpc.nuts.util.NStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
 import java.lang.reflect.Field;
+import java.security.Key;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class ConfService {

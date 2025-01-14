@@ -33,8 +33,8 @@ public class UserDetailsImpl implements UserDetails, AppPrincipal {
         this.user = user;
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+        this.authorities = user.getRole().getAuthorities().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getAuthority()))
                 .collect(Collectors.toList());
     }
 

@@ -1,12 +1,18 @@
 package com.easyrecruit.core.dal.entity;
 
+import com.easyrecruit.core.ws.rest.model.entity.AppUserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
 
 @Entity
 @Table(
@@ -16,7 +22,11 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "email"),
                 @UniqueConstraint(columnNames = "uuid")
         })
-public class AppUserEntity {
+@SuperBuilder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AppUserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,84 +49,26 @@ public class AppUserEntity {
 
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "app_user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<AppUserRoleEntity> roles = new HashSet<>();
+    @Enumerated(EnumType.STRING)
+    private AppUserRole role;
 
-    public AppUserEntity() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return role.getAuthorities();
     }
 
-    public String getUuid() {
-        return uuid;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public AppUserEntity setUuid(String uuid) {
-        this.uuid = uuid;
-        return this;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public AppUserEntity setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public AppUserEntity setUsername(String username) {
-        this.username = username;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public AppUserEntity setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public AppUserEntity setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public Set<AppUserRoleEntity> getRoles() {
-        return roles;
-    }
-
-    public AppUserEntity setRoles(Set<AppUserRoleEntity> roles) {
-        this.roles = roles;
-        return this;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public AppUserEntity setEnabled(boolean enabled) {
-        this.enabled = enabled;
-        return this;
-    }
-
-    public String getPlainPassword() {
-        return plainPassword;
-    }
-
-    public AppUserEntity setPlainPassword(String plainPassword) {
-        this.plainPassword = plainPassword;
-        return this;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 }

@@ -9,7 +9,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-12T14:30:05+0100",
+    date = "2025-01-14T13:59:09+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class CvConverterImpl implements CvConverter {
