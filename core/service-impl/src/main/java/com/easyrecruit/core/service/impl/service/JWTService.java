@@ -31,7 +31,6 @@ public class JWTService {
   public String generateToken(UserDetails userDetails){
 
     Map<String, Object> extraClaims = new HashMap<>();
-    // Add user roles to the extra claims
     AppUserEntity user = (AppUserEntity) userDetails;
     extraClaims.put("role", user.getRole().name());
     extraClaims.put("email", user.getEmail());

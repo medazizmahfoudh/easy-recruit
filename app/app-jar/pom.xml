@@ -34,6 +34,9 @@
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-management-service-impl</artifactId><version>1.0.0</version></dependency>
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-dmn-service-api</artifactId><version>1.0.0</version></dependency>
 		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-dmn-service-impl</artifactId><version>1.0.0</version></dependency>
+		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-evaluation-service-api</artifactId><version>1.0.0</version></dependency>
+		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-evaluation-service-impl</artifactId><version>1.0.0</version></dependency>
+		<dependency><groupId>com.easyrecruit</groupId><artifactId>easyrecruit-evaluation-ws-rest</artifactId><version>1.0.0</version></dependency>
 		<dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><scope>runtime</scope></dependency>
 		<dependency><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><optional>true</optional></dependency>
 	</dependencies>
