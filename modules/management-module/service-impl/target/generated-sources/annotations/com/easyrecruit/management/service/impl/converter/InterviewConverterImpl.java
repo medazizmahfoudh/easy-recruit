@@ -14,8 +14,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T19:12:37+0100",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
+    date = "2025-01-14T19:27:06+0100",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
 public class InterviewConverterImpl implements InterviewConverter {
 

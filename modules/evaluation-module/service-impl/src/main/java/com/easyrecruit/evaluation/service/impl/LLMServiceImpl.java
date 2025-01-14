@@ -26,7 +26,6 @@ public class LLMServiceImpl {
     public static JsonNode parseJson(String jsonString) {
         // convert the llm output to a json format
         ObjectMapper objectMapper = new ObjectMapper();
-
         try {
             // Parse the JSON string and return the JsonNode
             return objectMapper.readTree(jsonString);

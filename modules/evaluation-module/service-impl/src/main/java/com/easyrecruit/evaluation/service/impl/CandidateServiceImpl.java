@@ -2,13 +2,9 @@ package com.easyrecruit.evaluation.service.impl;
 
 
 import com.easyrecruit.evaluation.service.CandidateService;
-import com.easyrecruit.management.infra.model.entity.Application;
-import com.easyrecruit.management.infra.model.entity.ApplicationStatus;
-import com.easyrecruit.management.infra.model.entity.Evaluation;
-import com.easyrecruit.management.infra.model.entity.EvaluationStatus;
+import com.easyrecruit.management.infra.model.entity.*;
 import com.easyrecruit.management.service.api.ApplicationModule;
 import com.easyrecruit.management.service.api.EvaluationModule;
-import org.bson.RawBsonDocument;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +46,7 @@ public class CandidateServiceImpl implements CandidateService {
         String feedback = results.get("feedback");
 
         // Create Evaluation
-        Evaluation evaluation = evaluationModule.getEvaluation(application.getUuid());
+        Evaluation evaluation = evaluationModule.getEvaluationsByApplicationUuidAndStep(application.getUuid(), RecruitmentStep.PRELIMINARY);
         evaluation.setFeedback(feedback);
         evaluation.setScore(score);
         evaluation.setStatus(EvaluationStatus.COMPLETED);
@@ -81,8 +77,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
         public static String convertBinaryToString(Binary bsonData){
             // Convert a BinaryFile to a String
-            RawBsonDocument rawBsonDocument = RawBsonDocument.parse(bsonData.toString());
-            return rawBsonDocument.toString();
+            return new String(bsonData.getData(), java.nio.charset.StandardCharsets.UTF_8);
 
 
     }

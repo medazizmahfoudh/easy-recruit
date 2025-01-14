@@ -17,4 +17,6 @@ public interface EvaluationRepository extends JpaRepository<EvaluationEntity, In
     List<EvaluationEntity> findEvaluationEntitiesByApplicationUuid(String applicationUuid);
     void deleteByUuid(UUID uuid);
     List<EvaluationEntity> getEvaluationEntitiesByStatusAndStep(EvaluationStatus status, RecruitmentStep step);
+    Optional<EvaluationEntity> getEvaluationEntityByStepAndApplicationUuid(RecruitmentStep step, String applicationUuid);
+
 }

@@ -18,5 +18,6 @@ public interface EvaluationModule {
     List<Evaluation> getAllEvaluations();
     Evaluation getEvaluation(String uuid);
     List<Evaluation> getEvaluationsByApplicationUuid(String applicationUuid);
+    Evaluation getEvaluationsByApplicationUuidAndStep(String applicationUuid, RecruitmentStep step);
     List<Evaluation> getEvaluationsByStatusAndStep(EvaluationStatus status, RecruitmentStep step);
 }

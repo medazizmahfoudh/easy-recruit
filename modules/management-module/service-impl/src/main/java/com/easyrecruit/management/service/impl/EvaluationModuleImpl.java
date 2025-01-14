@@ -84,6 +84,15 @@ public class EvaluationModuleImpl implements EvaluationModule {
     }
 
     @Override
+    public Evaluation getEvaluationsByApplicationUuidAndStep(String applicationUuid, RecruitmentStep step) {
+        Optional<EvaluationEntity> evaluationEntity = repository.getEvaluationEntityByStepAndApplicationUuid(step, applicationUuid);
+        if (evaluationEntity.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Evaluation for the given application uuid and step does not exist");
+        }
+        return EvaluationConverter.INSTANCE.fromEntity(evaluationEntity.get());
+    }
+
+    @Override
     public List<Evaluation> getEvaluationsByStatusAndStep(EvaluationStatus status, RecruitmentStep step) {
         List<EvaluationEntity> evaluationEntities = repository.getEvaluationEntitiesByStatusAndStep(status, step);
         return evaluationEntities
