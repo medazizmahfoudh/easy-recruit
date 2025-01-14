@@ -1,6 +1,5 @@
 package com.easyrecruit.management.service.impl;
 
-import com.easyrecruit.dmn.infra.config.DmnConfiguration;
 import com.easyrecruit.dmn.infra.config.DmnInitializer;
 import com.easyrecruit.dmn.infra.model.StepModel;
 import com.easyrecruit.management.infra.model.entity.Application;
@@ -33,7 +32,7 @@ public class ProcessModuleImpl implements ProcessModule {
     public List<Evaluation> classifyAll() {
         dmnInitializer.initializeSteps();
         StepModel preliminaryStep = dmnInitializer.getSteps().get(0);
-        List<Evaluation> evaluations = evaluationModule.getEvaluationsByStatusAndStep(EvaluationStatus.IDLE, RecruitmentStep.PRELIMINARY);
+        List<Evaluation> evaluations = evaluationModule.getEvaluationsByStatusAndStep(EvaluationStatus.COMPLETED, RecruitmentStep.PRELIMINARY);
         List<Evaluation> classifiedEvaluations = evaluations.stream()
                 .map(evaluation -> {
                     VariableMap variables = Variables
