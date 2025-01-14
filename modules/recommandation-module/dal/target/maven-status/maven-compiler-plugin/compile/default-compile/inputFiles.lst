@@ -1,0 +1,11 @@
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/Application.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/OpenApiSpec.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/entities/ApplicationReport.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/entities/TrainerContact.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/entities/Training.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/entities/TrainingLevel.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/entities/TrainingSeverity.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/payloads/requests/TrainingCreationRequest.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/repositories/ApplicationReportRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/repositories/TrainingRepository.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/recommandation-module/dal/src/main/java/com/eniso/repositories/TrainingSpecification.java
