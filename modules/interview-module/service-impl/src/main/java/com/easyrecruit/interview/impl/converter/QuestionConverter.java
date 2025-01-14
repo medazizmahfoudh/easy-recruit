@@ -1,7 +1,9 @@
 package com.easyrecruit.interview.impl.converter;
 
 import com.easyrecruit.interview.dal.entity.QuestionEntity;
+import com.easyrecruit.interview.dal.entity.ReponseEntity;
 import com.easyrecruit.interview.infra.Entity.Question;
+import com.easyrecruit.interview.infra.Entity.Reponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

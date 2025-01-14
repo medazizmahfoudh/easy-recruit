@@ -1,9 +1,12 @@
 package com.easyrecruit.interview.infra.payload;
 
-import lombok.Data;
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.util.List;
+@Getter
+@Setter
 public class MultipleQuestionDto {
-    private List<QuestionWithAnswersDto> questions;
+    private List<QuestionWithAnswersDto> questions; // Liste des questions et leurs réponses
+
 }

@@ -1,12 +1,12 @@
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/SubmissionResponse.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/Entity/Question.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/ResponseUserRequest.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/QuestionWithAnswersDto.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/Entity/Response.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/QuestionWithResponsesDTO.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/SubmitAnswersRequest.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/Entity/Result.java
-/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/Entity/ResponseUser.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/Entity/Reponse.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/ReponseUtilisateurRequest.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/MultipleQuestionDto.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/TopicWithQuestionsDTO.java
 /home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/payload/ResponseInput.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/Entity/Resultat.java
+/home/aziz/Documents/ENISo/easy-recruit/modules/interview-module/infra/src/main/java/com/easyrecruit/interview/infra/Entity/ReponseUtilisateur.java

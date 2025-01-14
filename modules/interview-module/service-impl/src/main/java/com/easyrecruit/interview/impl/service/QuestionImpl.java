@@ -1,51 +1,51 @@
 package com.easyrecruit.interview.impl.service;
 
 import com.easyrecruit.interview.dal.entity.QuestionEntity;
+import com.easyrecruit.interview.dal.entity.ReponseEntity;
 import com.easyrecruit.interview.dal.repository.QuestionRepository;
-import com.easyrecruit.interview.dal.repository.ResponseRepository;
-import com.easyrecruit.interview.dal.repository.ResponseUserRepository;
+import com.easyrecruit.interview.dal.repository.ReponseRepository;
+import com.easyrecruit.interview.dal.repository.ResponseUtilisateurRepository;
 import com.easyrecruit.interview.impl.converter.QuestionConverter;
-import com.easyrecruit.interview.impl.converter.ResponseConverter;
 import com.easyrecruit.interview.infra.Entity.Question;
-import com.easyrecruit.interview.infra.Entity.Response;
 import com.easyrecruit.interview.infra.payload.QuestionWithResponsesDTO;
 import com.easyrecruit.interview.service.api.QuestionModule;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 
 public class QuestionImpl implements QuestionModule {
-
     @Autowired
     private QuestionRepository questionRepository;
+
     @Autowired
-    private ResponseUserRepository responseUserRepository;
+    private ResponseUtilisateurRepository reponseUtilisateurRepository;
+
     @Autowired
-    private ResponseRepository responseRepository;
+    private ReponseRepository reponseRepository;
+
+
+
 
     @Override
     @Transactional
-    public void addQuestionWithAnswers(Question question, List<Response> responses) {
+    public void addQuestionWithAnswers(Question question, List<ReponseEntity> reponses) {
         if (question.getTopic() == null || question.getTopic().isEmpty()) {
             throw new IllegalArgumentException("Le sujet de la question (topic) est requis.");
         }
 
         QuestionEntity questionEntity = QuestionConverter.INSTANCE.toEntity(question);
-        questionRepository.save(questionEntity);
+        questionRepository.save(questionEntity); // Sauvegarde de la question avec son topic
 
-        for (Response response : responses) {
-            if (response.getResponseText() == null || response.getResponseText().isEmpty()) {
+        for (ReponseEntity reponse : reponses) {
+            if (reponse.getReponseText() == null || reponse.getReponseText().isEmpty()) {
                 throw new IllegalArgumentException("La réponse ne peut pas être vide.");
             }
-            response.setQuestion(QuestionConverter.INSTANCE.fromEntity(questionEntity));
-            responseRepository.save(ResponseConverter.INSTANCE.toEntity(response));
+            reponse.setQuestion(questionEntity);
+            reponseRepository.save(reponse);
         }
     }
 

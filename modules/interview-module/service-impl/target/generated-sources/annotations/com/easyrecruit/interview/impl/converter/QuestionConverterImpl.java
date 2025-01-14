@@ -1,21 +1,16 @@
 package com.easyrecruit.interview.impl.converter;
 
 import com.easyrecruit.interview.dal.entity.QuestionEntity;
-import com.easyrecruit.interview.dal.entity.ResponseEntity;
-import com.easyrecruit.interview.dal.entity.ResponseUserEntity;
+import com.easyrecruit.interview.dal.entity.ReponseEntity;
+import com.easyrecruit.interview.dal.entity.ReponseUtilisateurEntity;
 import com.easyrecruit.interview.infra.Entity.Question;
-import com.easyrecruit.interview.infra.Entity.Response;
-import com.easyrecruit.interview.infra.Entity.ResponseUser;
-import com.easyrecruit.management.dal.entity.CandidateEntity;
-import com.easyrecruit.management.infra.model.entity.Candidate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T23:10:46+0100",
+    date = "2025-01-14T10:26:16+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
 public class QuestionConverterImpl implements QuestionConverter {
@@ -28,12 +23,18 @@ public class QuestionConverterImpl implements QuestionConverter {
 
         QuestionEntity questionEntity = new QuestionEntity();
 
+        List<ReponseEntity> list = question.getResponses();
+        if ( list != null ) {
+            questionEntity.setResponses( new ArrayList<ReponseEntity>( list ) );
+        }
         questionEntity.setId( question.getId() );
         questionEntity.setText( question.getText() );
         questionEntity.setCorrectAnswer( question.getCorrectAnswer() );
         questionEntity.setTopic( question.getTopic() );
-        questionEntity.setResponses( responseListToResponseEntityList( question.getResponses() ) );
-        questionEntity.setListResponses( responseUserListToResponseUserEntityList( question.getListResponses() ) );
+        List<ReponseUtilisateurEntity> list1 = question.getListResponses();
+        if ( list1 != null ) {
+            questionEntity.setListResponses( new ArrayList<ReponseUtilisateurEntity>( list1 ) );
+        }
 
         return questionEntity;
     }
@@ -50,159 +51,15 @@ public class QuestionConverterImpl implements QuestionConverter {
         question.setText( questionEntity.getText() );
         question.setCorrectAnswer( questionEntity.getCorrectAnswer() );
         question.setTopic( questionEntity.getTopic() );
-        question.setResponses( responseEntityListToResponseList( questionEntity.getResponses() ) );
-        question.setListResponses( responseUserEntityListToResponseUserList( questionEntity.getListResponses() ) );
+        List<ReponseEntity> list = questionEntity.getResponses();
+        if ( list != null ) {
+            question.setResponses( new ArrayList<ReponseEntity>( list ) );
+        }
+        List<ReponseUtilisateurEntity> list1 = questionEntity.getListResponses();
+        if ( list1 != null ) {
+            question.setListResponses( new ArrayList<ReponseUtilisateurEntity>( list1 ) );
+        }
 
         return question;
-    }
-
-    protected ResponseEntity responseToResponseEntity(Response response) {
-        if ( response == null ) {
-            return null;
-        }
-
-        ResponseEntity responseEntity = new ResponseEntity();
-
-        responseEntity.setId( response.getId() );
-        responseEntity.setCorrect( response.isCorrect() );
-        responseEntity.setResponseText( response.getResponseText() );
-        responseEntity.setQuestion( toEntity( response.getQuestion() ) );
-
-        return responseEntity;
-    }
-
-    protected List<ResponseEntity> responseListToResponseEntityList(List<Response> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<ResponseEntity> list1 = new ArrayList<ResponseEntity>( list.size() );
-        for ( Response response : list ) {
-            list1.add( responseToResponseEntity( response ) );
-        }
-
-        return list1;
-    }
-
-    protected CandidateEntity candidateToCandidateEntity(Candidate candidate) {
-        if ( candidate == null ) {
-            return null;
-        }
-
-        CandidateEntity candidateEntity = new CandidateEntity();
-
-        candidateEntity.setId( candidate.getId() );
-        if ( candidate.getUuid() != null ) {
-            candidateEntity.setUuid( UUID.fromString( candidate.getUuid() ) );
-        }
-        candidateEntity.setFirstname( candidate.getFirstname() );
-        candidateEntity.setLastname( candidate.getLastname() );
-        candidateEntity.setEmail( candidate.getEmail() );
-
-        return candidateEntity;
-    }
-
-    protected ResponseUserEntity responseUserToResponseUserEntity(ResponseUser responseUser) {
-        if ( responseUser == null ) {
-            return null;
-        }
-
-        ResponseUserEntity responseUserEntity = new ResponseUserEntity();
-
-        responseUserEntity.setId( responseUser.getId() );
-        responseUserEntity.setCandidate( candidateToCandidateEntity( responseUser.getCandidate() ) );
-        responseUserEntity.setQuestion( toEntity( responseUser.getQuestion() ) );
-        responseUserEntity.setResponse( responseToResponseEntity( responseUser.getResponse() ) );
-        responseUserEntity.setCorrect( responseUser.isCorrect() );
-
-        return responseUserEntity;
-    }
-
-    protected List<ResponseUserEntity> responseUserListToResponseUserEntityList(List<ResponseUser> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<ResponseUserEntity> list1 = new ArrayList<ResponseUserEntity>( list.size() );
-        for ( ResponseUser responseUser : list ) {
-            list1.add( responseUserToResponseUserEntity( responseUser ) );
-        }
-
-        return list1;
-    }
-
-    protected Response responseEntityToResponse(ResponseEntity responseEntity) {
-        if ( responseEntity == null ) {
-            return null;
-        }
-
-        Response response = new Response();
-
-        response.setId( responseEntity.getId() );
-        response.setCorrect( responseEntity.isCorrect() );
-        response.setResponseText( responseEntity.getResponseText() );
-        response.setQuestion( fromEntity( responseEntity.getQuestion() ) );
-
-        return response;
-    }
-
-    protected List<Response> responseEntityListToResponseList(List<ResponseEntity> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<Response> list1 = new ArrayList<Response>( list.size() );
-        for ( ResponseEntity responseEntity : list ) {
-            list1.add( responseEntityToResponse( responseEntity ) );
-        }
-
-        return list1;
-    }
-
-    protected Candidate candidateEntityToCandidate(CandidateEntity candidateEntity) {
-        if ( candidateEntity == null ) {
-            return null;
-        }
-
-        Candidate candidate = new Candidate();
-
-        candidate.setId( candidateEntity.getId() );
-        if ( candidateEntity.getUuid() != null ) {
-            candidate.setUuid( candidateEntity.getUuid().toString() );
-        }
-        candidate.setFirstname( candidateEntity.getFirstname() );
-        candidate.setLastname( candidateEntity.getLastname() );
-        candidate.setEmail( candidateEntity.getEmail() );
-
-        return candidate;
-    }
-
-    protected ResponseUser responseUserEntityToResponseUser(ResponseUserEntity responseUserEntity) {
-        if ( responseUserEntity == null ) {
-            return null;
-        }
-
-        ResponseUser responseUser = new ResponseUser();
-
-        responseUser.setId( responseUserEntity.getId() );
-        responseUser.setCandidate( candidateEntityToCandidate( responseUserEntity.getCandidate() ) );
-        responseUser.setQuestion( fromEntity( responseUserEntity.getQuestion() ) );
-        responseUser.setResponse( responseEntityToResponse( responseUserEntity.getResponse() ) );
-        responseUser.setCorrect( responseUserEntity.isCorrect() );
-
-        return responseUser;
-    }
-
-    protected List<ResponseUser> responseUserEntityListToResponseUserList(List<ResponseUserEntity> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<ResponseUser> list1 = new ArrayList<ResponseUser>( list.size() );
-        for ( ResponseUserEntity responseUserEntity : list ) {
-            list1.add( responseUserEntityToResponseUser( responseUserEntity ) );
-        }
-
-        return list1;
     }
 }

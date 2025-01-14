@@ -14,6 +14,7 @@ import java.util.Optional;
 
 public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> {
     List<QuestionEntity> findByTopic(String topic);
+
     @Query(value = "SELECT get_grouped_questions_by_topic()", nativeQuery = true)
     String getGroupedQuestionsByTopic();
     @Query(value = "SELECT * FROM get_questions_with_grouped_responses_by_topic()", nativeQuery = true)
@@ -23,5 +24,7 @@ public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> 
     String getGroupedQuestionsWithIdByTopic();
 
     Optional<QuestionEntity> findById(Long id);
+
+
     Page<QuestionEntity> findByTopic(String topic, Pageable pageable);}
 

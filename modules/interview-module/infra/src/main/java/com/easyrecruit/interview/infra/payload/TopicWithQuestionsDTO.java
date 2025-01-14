@@ -1,10 +1,22 @@
 package com.easyrecruit.interview.infra.payload;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class TopicWithQuestionsDTO {
     private String topic;
     private List<QuestionWithResponsesDTO> questions;
+
+    public TopicWithQuestionsDTO(String topic, List<QuestionWithResponsesDTO> questions) {
+        this.topic = topic;
+        this.questions = questions;
+    }
+
+    // Getters and setters
 }
