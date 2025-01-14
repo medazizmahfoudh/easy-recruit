@@ -1,6 +1,6 @@
 package com.easyrecruit.interview.service.api;
 
-import com.easyrecruit.interview.dal.entity.ReponseUtilisateur;
+import com.easyrecruit.interview.dal.entity.ReponseUtilisateurEntity;
 import com.easyrecruit.interview.dal.repository.ResponseUtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class ReponseUtilisateurService {
      *
      * @param reponsesUtilisateur Liste des réponses des utilisateurs à enregistrer.
      */
-    public void saveUserAnswers(List<ReponseUtilisateur> reponsesUtilisateur) {
+    public void saveUserAnswers(List<ReponseUtilisateurEntity> reponsesUtilisateur) {
         reponseUtilisateurRepository.saveAll(reponsesUtilisateur);
     }
 
@@ -27,7 +27,7 @@ public class ReponseUtilisateurService {
      * @param candidatId L'ID du candidat.
      * @return Liste des réponses utilisateur associées à ce candidat.
      */
-    public List<ReponseUtilisateur> getUserAnswersByCandidatId(Long candidatId) {
+    public List<ReponseUtilisateurEntity> getUserAnswersByCandidatId(Long candidatId) {
         return reponseUtilisateurRepository.findByCandidatId(candidatId);
     }
 }
