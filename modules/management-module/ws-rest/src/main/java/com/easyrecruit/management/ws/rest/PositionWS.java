@@ -1,8 +1,6 @@
 package com.easyrecruit.management.ws.rest;
 
-import com.easyrecruit.management.infra.model.entity.Application;
 import com.easyrecruit.management.infra.model.entity.Position;
-import com.easyrecruit.management.infra.model.payload.request.ApplicationSubmitOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.request.PositionCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.service.api.PositionModule;
@@ -34,6 +32,10 @@ public class PositionWS {
     @GetMapping("/all")
     public ResponseEntity<List<Position>> getAllPositions(){
         return ResponseEntity.ok(positionModule.getAllPositions());
+    }
+    @PostMapping("/delete-bulk")
+    public ResponseEntity<DeleteResponse> deletePositionBulkByUuid(@RequestBody List<String> interviewUuids ){
+        return ResponseEntity.ok(positionModule.deletePositionBulkByUuid(interviewUuids));
     }
     @DeleteMapping("/delete/{positionUuid}")
     public ResponseEntity<DeleteResponse> deletePosition(@PathVariable("positionUuid") String positionUuid ){

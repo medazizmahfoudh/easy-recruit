@@ -19,4 +19,5 @@ public interface RecruiterModule {
     List<Recruiter> getRecruiterByLastname(String lastname) throws CRUDOperationException;
     List<Recruiter> getAllRecruiters() throws CRUDOperationException;
     DeleteResponse deleteAllRecruiters() throws CRUDOperationException;
+    DeleteResponse deleteRecruiterBulkByUuid(List<String> interviewUuids);
 }

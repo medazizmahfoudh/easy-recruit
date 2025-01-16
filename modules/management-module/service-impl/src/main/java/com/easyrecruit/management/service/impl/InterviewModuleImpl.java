@@ -5,14 +5,17 @@ import com.easyrecruit.management.dal.repository.InterviewRepository;
 import com.easyrecruit.management.infra.model.entity.*;
 import com.easyrecruit.management.infra.model.payload.request.InterviewCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
+import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
 import com.easyrecruit.management.service.api.*;
 import com.easyrecruit.management.service.api.exception.CRUDOperation;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;
 import com.easyrecruit.management.service.impl.converter.InterviewConverter;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -38,13 +41,13 @@ public class InterviewModuleImpl implements InterviewModule {
 
 
 
-        Recruiter recruiter = recruiterModule.getRecruiterByUuid(request.recruiterUuid());
-        Candidate candidate = candidateModule.getCandidateByUuid(request.candidateUuid());
-        Position position = positionModule.getPositionByUuid(request.positionUuid());
+        Recruiter recruiter = recruiterModule.getRecruiterByUuid(request.getRecruiterUuid());
+        Candidate candidate = candidateModule.getCandidateByUuid(request.getCandidateUuid());
+        Position position = positionModule.getPositionByUuid(request.getPositionUuid());
 
         Interview interview = new Interview()
-                .setDate(Date.valueOf(request.date()))
-                .setLocation(request.location())
+                .setDate(LocalDateTime.parse(request.getDate(), DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+                .setLocation(request.getLocation())
                 .setCandidate(candidate)
                 .setRecruiter(recruiter)
                 .setPosition(position);
@@ -68,12 +71,12 @@ public class InterviewModuleImpl implements InterviewModule {
         }
 
         Interview interview = InterviewConverter.INSTANCE.fromEntity(interviewEntity.get());
-        interview.
-                setDate(Date.valueOf(request.date()))
-                .setLocation(request.location())
-                .setCandidate(candidateModule.getCandidateByUuid(request.candidateUuid()))
-                .setRecruiter(recruiterModule.getRecruiterByUuid(uuid))
-                .setPosition(positionModule.getPositionByUuid(request.positionUuid()));
+        interview
+                .setDate(LocalDateTime.parse(request.getDate(), DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+                .setLocation(request.getLocation())
+                .setCandidate(candidateModule.getCandidateByUuid(request.getCandidateUuid()))
+                .setRecruiter(recruiterModule.getRecruiterByUuid(request.getRecruiterUuid()))
+                .setPosition(positionModule.getPositionByUuid(request.getPositionUuid()));
 
         repository.save(InterviewConverter.INSTANCE.toEntity(interview));
         return interview;
@@ -160,7 +163,12 @@ public class InterviewModuleImpl implements InterviewModule {
 
     @Override
     public DeleteResponse deleteInterviewByUuid(String Uuid) {
-        return null;
+        UUID uuid = UUID.fromString(Uuid);
+        if (!repository.existsByUuid(uuid)) {
+            throw new CRUDOperationException(CRUDOperation.DELETE, "Interview for the given uuid not found.");
+        }
+        repository.deleteByUuid(uuid);
+        return new DeleteResponse(OperationStatus.SUCCESS,"Interview deleted successfully.");
     }
 
     @Override
@@ -196,6 +204,14 @@ public class InterviewModuleImpl implements InterviewModule {
     @Override
     public DeleteResponse deleteAllInterviews() {
         return null;
+    }
+
+    @Override
+    @Transactional
+    public DeleteResponse deleteInterviewBulkByUuid(List<String> interviewUuids) {
+        interviewUuids
+                .forEach(this::deleteInterviewByUuid);
+        return new DeleteResponse(OperationStatus.SUCCESS, "Interviews deleted successfully.");
     }
 
 

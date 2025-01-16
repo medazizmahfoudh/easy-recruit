@@ -1,8 +1,15 @@
 package com.easyrecruit.management.infra.model.payload.request;
 
 
-import org.springframework.lang.NonNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-public record InterviewCreateOrUpdateRequest(@NonNull String date, @NonNull String location, @NonNull String positionUuid, @NonNull String recruiterUuid, @NonNull String candidateUuid) {
-
+@AllArgsConstructor
+@Getter
+public class InterviewCreateOrUpdateRequest {
+    String date;
+    String location;
+    String positionUuid;
+    String recruiterUuid;
+    String candidateUuid;
 }

@@ -139,4 +139,10 @@ public class RecruiterModuleImpl implements RecruiterModule {
         repository.deleteAll();
         return new DeleteResponse(OperationStatus.SUCCESS, "All recruiters have been deleted.");
     }
+
+    @Override
+    public DeleteResponse deleteRecruiterBulkByUuid(List<String> interviewUuids) {
+        interviewUuids.forEach(this::deleteRecruiter);
+        return new DeleteResponse(OperationStatus.SUCCESS, "Recruiters deleted successfully.");
+    }
 }

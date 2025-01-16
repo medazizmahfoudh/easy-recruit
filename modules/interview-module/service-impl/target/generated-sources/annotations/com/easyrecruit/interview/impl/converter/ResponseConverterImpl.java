@@ -15,8 +15,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-14T23:10:46+0100",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
+    date = "2025-01-16T16:44:26+0100",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 17.0.13 (Ubuntu)"
 )
 public class ResponseConverterImpl implements ResponseConverter {
 

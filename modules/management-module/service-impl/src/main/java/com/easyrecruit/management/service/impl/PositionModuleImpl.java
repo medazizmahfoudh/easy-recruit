@@ -88,4 +88,9 @@ public class PositionModuleImpl implements PositionModule {
     public DeleteResponse deletePositionsByLocation(String location) {
         return null;
     }
+
+    @Override
+    public DeleteResponse deletePositionBulkByUuid(List<String> interviewUuids) {
+        return null;
+    }
 }

@@ -1,9 +1,6 @@
 package com.easyrecruit.management.service.api;
 
-import com.easyrecruit.management.infra.model.entity.Candidate;
 import com.easyrecruit.management.infra.model.entity.Interview;
-import com.easyrecruit.management.infra.model.entity.Position;
-import com.easyrecruit.management.infra.model.entity.Recruiter;
 import com.easyrecruit.management.infra.model.payload.request.InterviewCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;
@@ -30,4 +27,5 @@ public interface InterviewModule {
     DeleteResponse deleteInterviewByPositionUuidAndCandidateUuid(String positionUuid, String candidateUuid);
     DeleteResponse deleteInterviewsByCandidateUuidAndRecruiterUuid(String candidateUuid, String recruiterUuid);
     DeleteResponse deleteAllInterviews();
+    DeleteResponse deleteInterviewBulkByUuid(List<String> interviewUuids);
 }

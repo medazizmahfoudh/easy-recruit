@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -26,8 +26,7 @@ public class InterviewEntity {
     @Convert(converter = UUIDConverter.class)
     @Column(columnDefinition = "varchar")
     private UUID uuid;
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDateTime date;
     private String location;
     private String positionUuid;
     @ManyToOne

@@ -41,6 +41,10 @@ public class RecruiterWS {
     public ResponseEntity<DeleteResponse> deleteRecruiter(@PathVariable("recruiterUuid") String recruiterUuid ){
         return ResponseEntity.ok(recruiterModule.deleteRecruiter(recruiterUuid));
     }
+    @PostMapping("/delete-bulk")
+    public ResponseEntity<DeleteResponse> deleteRecruiterBulkByUuid(@RequestBody List<String> interviewUuids ){
+        return ResponseEntity.ok(recruiterModule.deleteRecruiterBulkByUuid(interviewUuids));
+    }
     @DeleteMapping("/delete-all")
     public ResponseEntity<DeleteResponse> deleteAllRecruiters(){
         return ResponseEntity.ok(recruiterModule.deleteAllRecruiters());

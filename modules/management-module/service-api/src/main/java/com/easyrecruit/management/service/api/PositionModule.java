@@ -19,4 +19,5 @@ public interface PositionModule {
     DeleteResponse deletePositionByUuid(String uuid);
     DeleteResponse deletePositionsByName(String name);
     DeleteResponse deletePositionsByLocation(String location);
+    DeleteResponse deletePositionBulkByUuid(List<String> interviewUuids);
 }

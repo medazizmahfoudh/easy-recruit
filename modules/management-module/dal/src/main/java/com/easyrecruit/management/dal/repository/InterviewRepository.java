@@ -18,4 +18,6 @@ public interface InterviewRepository extends JpaRepository<InterviewEntity, Long
     Optional<InterviewEntity> getInterviewEntityByPositionUuidAndCandidate_Uuid(String positionUuid, UUID candidateUuid);
     List<InterviewEntity> getInterviewEntitiesByPositionUuidAndRecruiterUuid(String positionUuid, UUID recruiterUuid);
     List<InterviewEntity> getInterviewEntitiesByCandidate_UuidAndRecruiterUuid(UUID candidateUuid, UUID recruiterUuid);
+    boolean existsByUuid(UUID uuid);
+    void deleteByUuid(UUID uuid);
 }

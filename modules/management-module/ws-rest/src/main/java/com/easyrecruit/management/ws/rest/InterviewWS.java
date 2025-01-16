@@ -18,11 +18,11 @@ public class InterviewWS {
     private InterviewModule interviewModule;
 
     @PostMapping("/create")
-    public ResponseEntity<Interview> createInterview(InterviewCreateOrUpdateRequest request){
+    public ResponseEntity<Interview> createInterview(@RequestBody InterviewCreateOrUpdateRequest request){
         return ResponseEntity.ok(interviewModule.createInterview(request));
     }
     @PostMapping("/update/{interviewUuid}")
-    public ResponseEntity<Interview> updateInterview(InterviewCreateOrUpdateRequest request, @PathVariable("interviewUuid") String interviewUuid){
+    public ResponseEntity<Interview> updateInterview(@RequestBody InterviewCreateOrUpdateRequest request, @PathVariable("interviewUuid") String interviewUuid){
         return ResponseEntity.ok(interviewModule.updateInterview(request, interviewUuid));
     }
     @GetMapping("/get/{interviewUuid}")
@@ -60,6 +60,10 @@ public class InterviewWS {
     @DeleteMapping("/delete/{interviewUuid}")
     public ResponseEntity<DeleteResponse> deleteInterviewByUuid(@PathVariable("interviewUuid") String interviewUuid ){
         return ResponseEntity.ok(interviewModule.deleteInterviewByUuid(interviewUuid));
+    }
+    @PostMapping("/delete-bulk")
+    public ResponseEntity<DeleteResponse> deleteInterviewBulkByUuid(@RequestBody List<String> interviewUuids ){
+        return ResponseEntity.ok(interviewModule.deleteInterviewBulkByUuid(interviewUuids));
     }
     @DeleteMapping("/delete-all")
     public ResponseEntity<DeleteResponse> deleteApplication(){
