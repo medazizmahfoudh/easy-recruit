@@ -34,8 +34,8 @@ public class PositionWS {
         return ResponseEntity.ok(positionModule.getAllPositions());
     }
     @PostMapping("/delete-bulk")
-    public ResponseEntity<DeleteResponse> deletePositionBulkByUuid(@RequestBody List<String> interviewUuids ){
-        return ResponseEntity.ok(positionModule.deletePositionBulkByUuid(interviewUuids));
+    public ResponseEntity<DeleteResponse> deletePositionBulkByUuid(@RequestBody List<String> uuids ){
+        return ResponseEntity.ok(positionModule.deletePositionBulkByUuid(uuids));
     }
     @DeleteMapping("/delete/{positionUuid}")
     public ResponseEntity<DeleteResponse> deletePosition(@PathVariable("positionUuid") String positionUuid ){

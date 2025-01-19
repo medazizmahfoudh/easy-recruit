@@ -5,6 +5,7 @@ import com.easyrecruit.management.dal.repository.PositionRepository;
 import com.easyrecruit.management.infra.model.entity.Position;
 import com.easyrecruit.management.infra.model.payload.request.PositionCreateOrUpdateRequest;
 import com.easyrecruit.management.infra.model.payload.response.DeleteResponse;
+import com.easyrecruit.management.infra.model.payload.response.OperationStatus;
 import com.easyrecruit.management.service.api.PositionModule;
 import com.easyrecruit.management.service.api.exception.CRUDOperation;
 import com.easyrecruit.management.service.api.exception.CRUDOperationException;
@@ -76,7 +77,12 @@ public class PositionModuleImpl implements PositionModule {
 
     @Override
     public DeleteResponse deletePositionByUuid(String uuid) {
-        return null;
+        Optional<PositionDocument> positionDocument = repository.getPositionDocumentByUuid(uuid);
+        if (positionDocument.isEmpty()) {
+            throw new CRUDOperationException(CRUDOperation.READ, "Position for the given uuid doesn't exist");
+        }
+        repository.delete(positionDocument.get());
+        return new DeleteResponse(OperationStatus.SUCCESS, "Position has been deleted.");
     }
 
     @Override
@@ -91,6 +97,7 @@ public class PositionModuleImpl implements PositionModule {
 
     @Override
     public DeleteResponse deletePositionBulkByUuid(List<String> interviewUuids) {
-        return null;
+        interviewUuids.forEach(this::deletePositionByUuid);
+        return new DeleteResponse(OperationStatus.SUCCESS, "Positions deleted successfully.");
     }
 }
